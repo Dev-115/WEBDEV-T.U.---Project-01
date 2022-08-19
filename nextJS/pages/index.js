@@ -30,6 +30,8 @@ console.log('mark\'s branch');
         </p>
         <h4 className="title">
          Read <Link href="/login">this page!</Link>
+         Read <Link href="/trial">this page!</Link>
+
         </h4>
 
 
