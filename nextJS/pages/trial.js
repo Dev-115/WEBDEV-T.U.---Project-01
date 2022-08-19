@@ -5,24 +5,32 @@ import Script from 'next/script'; // add scripts
 onLoad is used to run any JavaScript code immediately after the script has finished loading. In this example, we log a message to the console that mentions that the script has loaded correctly */
 import Layout from '../components/layout';
 import LoginBtn from '../components/login-btn';
-
 import Image from 'next/image';
+import { useSession, getSession } from "next-auth/react"
 
-const TennorGif  = () => (
-  <Image
-    src="/images/f7f97425cafd67695409db84dc60871a.gif" // Route of the image file //
-    height={144} // Desired size with correct aspect ratio
-    width={144} // Desired size with correct aspect ratio
-    alt="Your Name"
-  />
-);
 
-export default function LoginPagePost() {
-    return (
-        <>
-        <Layout>
+export default function trailPost() {
+    const { data: session, status } = useSession()
+
+  if (status === "loading") {
+    return(
+    <>
+
+      </>
+    )
+  }
+
+  if (status === "unauthenticated") {
+    return <p>Access Denied</p>
+  }
+
+  
+  return (
+    <>
+
+<Layout>
         <Head>
-        <title>Login</title>
+        <title>Auth</title>
         <Script
         src="https://connect.facebook.net/en_US/sdk.js"
         strategy="lazyOnload"
@@ -32,14 +40,12 @@ export default function LoginPagePost() {
       />
       </Head>
 
-            <h1>Login Here</h1>
             <LoginBtn></LoginBtn>
-            <TennorGif  />
-            <h3>
+            <h1>Protected Page</h1>
+            <p>You can view this page because you are signed in.</p>
             <br/>
-            <Link href="/trial">mypage</Link>
-            </h3>
             </Layout>
-      </>
+
+    </>
     )
   }
