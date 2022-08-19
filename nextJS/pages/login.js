@@ -4,6 +4,8 @@ import Script from 'next/script'; // add scripts
 /** strategy controls when the third-party script should load. A value of lazyOnload tells Next.js to load this particular script lazily during browser idle time
 onLoad is used to run any JavaScript code immediately after the script has finished loading. In this example, we log a message to the console that mentions that the script has loaded correctly */
 import Layout from '../components/layout';
+import LoginBtn from '../components/login-btn';
+
 import Image from 'next/image';
 
 const TennorGif  = () => (
@@ -31,6 +33,7 @@ export default function LoginPagePost() {
       </Head>
 
             <h1>Login Here</h1>
+            <LoginBtn></LoginBtn>
             <TennorGif  />
             <h3>
             <Link href="/">Back to home</Link>
