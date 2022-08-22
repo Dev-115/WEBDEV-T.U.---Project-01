@@ -3,7 +3,7 @@ import Head from 'next/head';//heder editw
 import Script from 'next/script'; // add scripts 
 /** strategy controls when the third-party script should load. A value of lazyOnload tells Next.js to load this particular script lazily during browser idle time
 onLoad is used to run any JavaScript code immediately after the script has finished loading. In this example, we log a message to the console that mentions that the script has loaded correctly */
-import Layout from '../components/layout';
+// import Layout from '../components/layout';
 import LoginBtn from '../components/login-btn';
 import { useForm } from "react-hook-form";
 
@@ -20,33 +20,26 @@ const TennorGif  = () => (
 
 export default function RegisterPagePost() {
 
+
     const { register, handleSubmit, formState:{formeError} } = useForm();
     // const onSubmit = data => console.log(data);
 
     console.log(formeError);
     const onSubmit = async (data) => {
+
+
         // Stop the form from submitting and refreshing the page.
         // event.preventDefault()
-    
+        var uniq = 'cl' + (new Date()).getTime() + Math.random().toString(16).slice(2);
+
         // Get data from the form.
-        data["sql"] = "INSERT INTO user (name) VALUES (?);";
-        data["sqlParam"] = "awd";
+        data["sql"] = "INSERT INTO `user` (`id`, `name`, `email`, `Password`) VALUES (?, ?, ?, ?);";// ('sad', 'sad', 'sad', 'sad', '2022-08-22 23:50:47.000', 'sad');
+        data["sqlParamid"] = uniq;
+        data["sqlParamname"] = uniq.Username;
+        data["sqlParamemail"] = data.emailadd;
+        data["sqlParamPassword"] = data.password;
 
-        // const data = {
-        //     sql:"INSERT INTO user (name) VALUES (?);",
-        //     sqlParam:'',
-        //     // firstname: event.target.firstname.value,
-        //     // lastname: event.target.lastname.value,
-        //     first: event.target.first.value,
-        //     last: event.target.last.value,
-        // //   Email: event.target.email.value,
-        // //   role: event.target.role.value,          
-        // //   Age: event.target.age.value,
-        // //   name: event.target.name.value,          
-        // //   password: event.target.password.value,          
 
-        // }
-    
         // Send the data to the server in JSON format.
         const JSONdata = JSON.stringify(data)
     
@@ -76,7 +69,7 @@ export default function RegisterPagePost() {
 
     return (
         <>
-        <Layout>
+        {/* <Layout> */}
         <Head>
         <title>Register</title>
       </Head>
@@ -150,7 +143,7 @@ export default function RegisterPagePost() {
                 </div>
             </div>
         </div>
-        </Layout>
+        {/* </Layout> */}
       </>
     )
   }

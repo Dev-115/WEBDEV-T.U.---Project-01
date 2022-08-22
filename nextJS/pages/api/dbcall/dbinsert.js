@@ -4,15 +4,15 @@ export default async function handler (req, res){
 
     if(req.method == "POST"){
         try{
-            // const sql = req.body.sql;
-            // const valuesParams = [req.body.sqlParam];
+            const sql = req.body.sql;
+            const valuesParams = [req.body.sqlParam];
 
-            // // const data = await query({query: sql, values: valuesParams});
             // const data = await query({query: sql, values: valuesParams});
+            const data = await query({query: sql, values: valuesParams});
 
-
-            // return res.status(200).json(data[0]);
             console.log(req.body);
+
+            return res.status(200).json(data[0]);
 
         }catch(error){
             return res.status(500).json({error: error.message});
