@@ -1,15 +1,19 @@
-// import { NextApiRequest, NextApiResponse } from "next";
 import { query } from "../../../lib/getDBDATA";
 
 export default async function handler (req, res){
-    try{
-        const sql = "SELECT * From user WHERE user.name = ?";
-        const valuesParams = ['Pipay Taso'];
+    if(req.method == "POST"){
+        try{
+            const sql = "SELECT * From user WHERE user.name = ?";
+            const valuesParams = ['Pipay Taso'];
 
-        const data = await query({query: sql, values: valuesParams});
-        res.status(200).json(data[0]);
-    }catch(error){
-        res.status(500).json({error: error.message});
+            const data = await query({query: sql, values: valuesParams});
+            res.status(200).json(data[0]);
+
+        }catch(error){
+            res.status(500).json({error: error.message});
+        }
+    }else{
+        return res.status(500).json({message: 'Sorry Request Denied'});
     }
 }
 

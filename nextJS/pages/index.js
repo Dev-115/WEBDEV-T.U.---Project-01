@@ -19,7 +19,7 @@ console.log('mark\'s branch');
 
       <main>
         <h1 className="title">
-          Welcome to <a href="https://nextjs.org">Team unemployed!</a>
+          Welcome to <a href="https://nextjs.org">Team MAGG!</a>
         </h1>
 
         <p className="description">
