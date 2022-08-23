@@ -1,3 +1,4 @@
+import React from "react";
 import Link from 'next/link';
 import Head from 'next/head';//heder editw
 import Script from 'next/script'; // add scripts 
@@ -5,26 +6,41 @@ import Script from 'next/script'; // add scripts
 onLoad is used to run any JavaScript code immediately after the script has finished loading. In this example, we log a message to the console that mentions that the script has loaded correctly */
 import Layout from '../components/layout';
 import LoginBtn from '../components/login-btn';
-import { useForm } from "react-hook-form";
+import ReCaptcha from 'react-google-recaptcha'
+import { set, useForm } from "react-hook-form";
 
-import Image from 'next/image';
-
-const TennorGif  = () => (
-  <Image
-    src="/images/f7f97425cafd67695409db84dc60871a.gif" // Route of the image file //
-    height={144} // Desired size with correct aspect ratio
-    width={144} // Desired size with correct aspect ratio
-    alt="Your Name"
-  />
-);
+let renderCount = 0;
 
 export default function RegisterPagePost() {
 
+    const recaptchaRef = React.createRef();
+    const { register, watch, handleSubmit, formState:{errors} } = useForm();
+    const [password, setpassword] = React.useState("");
 
-    const { register, handleSubmit, formState:{formeError} } = useForm();
-    // const onSubmit = data => console.log(data);
+    const password2 = React.useRef({});
+    password2.current = watch("password");
+    const [humantest, sethumantest] = React.useState("");
 
-    // console.log(formeError);
+        renderCount += 1;
+        console.log(`${RegisterPagePost.name}. renderCount: `, renderCount);
+
+    const onReCAPTCHAChange = (captchaCode) => {
+        // If the reCAPTCHA code is null or undefined indicating that
+        // the reCAPTCHA was expired then return early
+        if(!captchaCode) {
+          return;
+        }
+        // Else reCAPTCHA was executed successfully so proceed with the 
+        // alert
+        // alert(`Hey, ${email}`);
+        // Reset the reCAPTCHA so that it can be executed again if user 
+        // submits another email.
+        sethumantest(true); 
+      }
+
+      if(humantest == true){
+        
+      }
     const onSubmit = async (data) => {
 
 
@@ -44,7 +60,7 @@ export default function RegisterPagePost() {
         const JSONdata = JSON.stringify(data)
     
         // API endpoint where we send form data.
-        const endpoint = './api/dbcall/dbinsert'
+        const endpoint = './api/dbcall/dbRegisterUser'
     
         // Form the request for sending data to the server.
         const options = {
@@ -59,12 +75,20 @@ export default function RegisterPagePost() {
         }
     
         // Send the form data to our forms API on Vercel and get a response.
-        const response = await fetch(endpoint, options)
+        if(humantest == true){
+            const response = await fetch(endpoint, options);
+
+            const result = await response.json();
+            const mymessage = JSON.stringify(result);
+
+            alert(mymessage);
+        }else{
+            alert(`please recaptcha`);
+        }
     
         // Get the response data from server as JSON.
         // If server returns the name submitted, that means the form works.
-        const result = await response.json()
-        alert(`Is this your full name: ${result.data}`)
+
       }
 
     return (
@@ -115,12 +139,32 @@ export default function RegisterPagePost() {
                             <input type="text" id="username" {...register("Username", {required: true})}/>
                         </div>
                         <div className="field">
-                            <label htmlFor="password">Password:</label>
+                            {/* <label htmlFor="password">Password:</label>
                             <input type="password" id="password" {...register("password", {required: true})}/>
                         </div>
                         <div className="field">
                             <label htmlFor="confirmpassword">Confirm pw:</label>
-                            <input type="confirmpassword" id="confirmpassword" {...register("confirmpassword", {required: true})}/>
+                            <input type="confirmpassword" id="confirmpassword" {...register("confirmpassword", {required: true})}/> */}
+                            <label>Password</label>
+                            <input
+                                name="password"
+                                type="password"
+                                {...register("password", 
+                                {required: "You must specify a password"})}
+                            />
+                            {errors.password && <p>{errors.password.message}</p>}
+
+                            <label>Repeat password</label>
+                            <input
+                                name="confirmpassword"
+                                type="password"
+                                {...register("confirmpassword",
+                                 {validate: value =>
+                                    value === password2.current || "The passwords do not match"}
+                                    )}
+                            />
+                            {errors.confirmpassword && <p>{errors.confirmpassword.message}</p>}
+
                         </div>
                         <div className="field">
                             {/* <label htmlFor="termsandconditions">Username:</label> */}
@@ -129,9 +173,16 @@ export default function RegisterPagePost() {
                         <br/>
                         <br/>
                         {/* <br/> */}
-                        {/* <ReCAPTCHA
+                        {/* <eCaptcha
                         sitekey="6Le6_lQeAAAAAG_6B4F-OjL0mbth_UQLUihCtxiG"
+                        ref={recaptchaRef}
                         /> */}
+                        	  <ReCaptcha
+                                    ref={recaptchaRef}
+                                    // size="invisible"
+                                    sitekey="6Le6_lQeAAAAAG_6B4F-OjL0mbth_UQLUihCtxiG"
+                                    onChange={onReCAPTCHAChange}
+                                />
                         <div className="field btn">
                             <div className="btn-layer"></div>
                             <button type="submit">Submit</button>

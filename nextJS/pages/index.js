@@ -29,8 +29,8 @@ console.log('mark\'s branch');
          Mark
         </p>
         <h4 className="title">
-         Read <Link href="/login">this page!</Link>
-         Read <Link href="/trial">this page!</Link>
+         <Link href="/login">Login Here!</Link>
+        <Link href="/register">Register Here!</Link>
 
         </h4>
 

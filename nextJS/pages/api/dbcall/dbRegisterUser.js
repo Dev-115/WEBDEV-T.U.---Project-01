@@ -7,7 +7,6 @@ export default async function handler (req, res){
         user: process.env.DATABASE2_USER,
         password: process.env.DATABASE2_PASSWORD,
     })
-    console.log(req.method);
 
     if(req.method == "POST"){
         try{
@@ -20,10 +19,11 @@ export default async function handler (req, res){
             // const data = await query({query: sql, values: });
             // console.log(req.body);
             // console.log({query: sql, values: [body.sqlParamid, body.sqlParamname, body.sqlParamemail, body.sqlParamemail]});
-            console.log(data);
-            return res.status(200).json(data[0]);
+            return res.status(200).json('User has been registred');
 
         }catch(error){
+            console.log('dbsert 26>> ',error);
+
             return res.status(500).json({error: error.message});
         }
     }else{
