@@ -9,7 +9,7 @@ import LoginBtn from '../components/login-btn';
 import ReCaptcha from 'react-google-recaptcha'
 import { set, useForm } from "react-hook-form";
 
-let renderCount = 0;
+// let renderCount = 0;
 
 export default function RegisterPagePost() {
 
@@ -21,8 +21,8 @@ export default function RegisterPagePost() {
     password2.current = watch("password");
     const [humantest, sethumantest] = React.useState("");
 
-        renderCount += 1;
-        console.log(`${RegisterPagePost.name}. renderCount: `, renderCount);
+        // renderCount += 1;
+        // console.log(`${RegisterPagePost.name}. renderCount: `, renderCount);
 
     const onReCAPTCHAChange = (captchaCode) => {
         // If the reCAPTCHA code is null or undefined indicating that
@@ -30,6 +30,7 @@ export default function RegisterPagePost() {
         if(!captchaCode) {
           return;
         }
+
         // Else reCAPTCHA was executed successfully so proceed with the 
         // alert
         // alert(`Hey, ${email}`);
@@ -76,14 +77,36 @@ export default function RegisterPagePost() {
     
         // Send the form data to our forms API on Vercel and get a response.
         if(humantest == true){
-            const response = await fetch(endpoint, options);
+            // const token = recaptchaRef.current.getValue();
+            // captchaRef.current.reset();
 
-            const result = await response.json();
-            const mymessage = JSON.stringify(result);
-
-            alert(mymessage);
+            // const endpoint2 = './api/dbcall/dbRegisterUser';
+    
+            // // Form the request for sending data to the server.
+            // const options2 = {
+            //     // The method is POST because we are sending data.
+            //     method: 'POST',
+            //     // Tell the server we're sending JSON.
+            //     headers: {
+            //       'Content-Type': 'application/json',
+            //     },
+            //   }
+            // const captchaRef = await fetch(`https://www.google.com/recaptcha/api/siteverify?secret=6Le6_lQeAAAAAKAzGT1KQC6xvXKIsv56SijGPSUT&response=${token}`);
+            // if (captchaRef.status(200)) {
+                const response = await fetch(endpoint, options);
+    
+    
+                const result = await response.json();
+                const mymessage = JSON.stringify(result);
+    
+                alert(mymessage);
+            // }else{
+            //     console.log(captchaRef);
+            //   alert(`please recaptcha`);
+            // }
+    
         }else{
-            alert(`please recaptcha`);
+            alert("Robot 🤖");
         }
     
         // Get the response data from server as JSON.
@@ -173,16 +196,16 @@ export default function RegisterPagePost() {
                         <br/>
                         <br/>
                         {/* <br/> */}
-                        {/* <eCaptcha
-                        sitekey="6Le6_lQeAAAAAG_6B4F-OjL0mbth_UQLUihCtxiG"
-                        ref={recaptchaRef}
-                        /> */}
-                        	  <ReCaptcha
+                        	  {/* <ReCaptcha
                                     ref={recaptchaRef}
-                                    // size="invisible"
                                     sitekey="6Le6_lQeAAAAAG_6B4F-OjL0mbth_UQLUihCtxiG"
                                     onChange={onReCAPTCHAChange}
-                                />
+                                /> */}
+
+                    <ReCaptcha
+                    sitekey="6Le6_lQeAAAAAG_6B4F-OjL0mbth_UQLUihCtxiG"
+                    ref={recaptchaRef}
+                    />
                         <div className="field btn">
                             <div className="btn-layer"></div>
                             <button type="submit">Submit</button>
