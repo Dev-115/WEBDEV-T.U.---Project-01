@@ -8,6 +8,7 @@ import Auth0Provider from "next-auth/providers/auth0"
 import { PrismaAdapter } from "@next-auth/prisma-adapter"
 import { PrismaClient } from "@prisma/client"
 import CredentialsProvider from "next-auth/providers/credentials"
+var CryptoJS = require("crypto-js");
 
 
 
@@ -76,7 +77,9 @@ export default NextAuth({
     
           // If no error and we have user data, return it
           if (res.ok && user) {
-            if(user.Password == credentials.password){
+            var bytes  = CryptoJS.AES.decrypt(user.Password, 'TeamMAGG');
+            var passwordText = bytes.toString(CryptoJS.enc.Utf8);
+            if(passwordText == credentials.password){
               return user
             }else{
               return null

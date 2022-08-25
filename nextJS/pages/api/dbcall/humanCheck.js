@@ -1,5 +1,6 @@
 export default async function humanCheck (req, res){
 
+    
 if(req.method == "POST"){
     const credData = req.body;
         try{

@@ -11,11 +11,23 @@ import { set, useForm } from "react-hook-form";
 
 // let renderCount = 0;
 
+// Encrypt
+// var ciphertext = CryptoJS.AES.encrypt('sample message', process.env.CRYPTO_SECRET_KEY).toString(); 
+
+// Decrypt
+// var bytes  = CryptoJS.AES.decrypt(ciphertext, 'secret key');
+// var originalText = bytes.toString(CryptoJS.enc.Utf8);
+
+
+
 export default function RegisterPagePost() {
+
 
     const recaptchaRef = React.createRef();
     const { register, watch, handleSubmit, formState:{errors} } = useForm();
     const [password, setpassword] = React.useState("");
+    const [captchaAPI, setcaptchaAPI] = React.useState("");
+
 
     const password2 = React.useRef({});
     password2.current = watch("password");
@@ -36,25 +48,33 @@ export default function RegisterPagePost() {
         // alert(`Hey, ${email}`);
         // Reset the reCAPTCHA so that it can be executed again if user 
         // submits another email.
+        const token = recaptchaRef.current.getValue();
+        setcaptchaAPI(token);
         sethumantest(true); 
       }
 
-      if(humantest == true){
-        
-      }
+
     const onSubmit = async (data) => {
+
+        var CryptoJS = require("crypto-js");
 
 
         // Stop the form from submitting and refreshing the page.
         // event.preventDefault()
         var uniq = 'cl' + (new Date()).getTime() + Math.random().toString(16).slice(2);
 
+        var notwords = data.password;
+        console.log(process.env.CRYPTO_SECRET_KEY);
+        var cipherpassword = CryptoJS.AES.encrypt(data.password, 'TeamMAGG').toString(); 
+
         // Get data from the form.
         data["sql"] = "INSERT INTO `user` (`id`, `name`, `email`, `Password`) VALUES (?, ?, ?, ?);";// ('sad', 'sad', 'sad', 'sad', '2022-08-22 23:50:47.000', 'sad');
         data["sqlParamid"] = uniq;
         data["sqlParamname"] = data.Username;
         data["sqlParamemail"] = data.emailadd;
-        data["sqlParamPassword"] = data.password;
+        data["sqlParamPassword"] = cipherpassword;
+
+        console.log('password encryption>>', cipherpassword);
 
 
         // Send the data to the server in JSON format.
@@ -77,22 +97,20 @@ export default function RegisterPagePost() {
     
         // Send the form data to our forms API on Vercel and get a response.
         if(humantest == true){
-            // const token = recaptchaRef.current.getValue();
-            // captchaRef.current.reset();
 
-            // const endpoint2 = './api/dbcall/dbRegisterUser';
+            const endpoint2 = './api/dbcall/dbRegisterUser';
     
-            // // Form the request for sending data to the server.
-            // const options2 = {
-            //     // The method is POST because we are sending data.
-            //     method: 'POST',
-            //     // Tell the server we're sending JSON.
-            //     headers: {
-            //       'Content-Type': 'application/json',
-            //     },
-            //   }
-            // const captchaRef = await fetch(`https://www.google.com/recaptcha/api/siteverify?secret=6Le6_lQeAAAAAKAzGT1KQC6xvXKIsv56SijGPSUT&response=${token}`);
-            // if (captchaRef.status(200)) {
+            // Form the request for sending data to the server.
+            const options2 = {
+                // The method is POST because we are sending data.
+                method: 'POST',
+                // Tell the server we're sending JSON.
+                headers: {
+                  'Content-Type': 'application/json',
+                },
+              }
+            const captchaRefapi = await fetch(`https://www.google.com/recaptcha/api/siteverify?secret=6Le6_lQeAAAAAKAzGT1KQC6xvXKIsv56SijGPSUT&response=${captchaAPI}`);
+            if (captchaRefapi.ok) {
                 const response = await fetch(endpoint, options);
     
     
@@ -100,10 +118,10 @@ export default function RegisterPagePost() {
                 const mymessage = JSON.stringify(result);
     
                 alert(mymessage);
-            // }else{
-            //     console.log(captchaRef);
-            //   alert(`please recaptcha`);
-            // }
+            }else{
+                console.log(captchaRef);
+              alert(`please recaptcha`);
+            }
     
         }else{
             alert("Robot 🤖");
@@ -167,6 +185,12 @@ export default function RegisterPagePost() {
 
                         </div>
                         <div className="field">
+                            <label htmlFor="phoneNo">Phone number:</label>
+                            <input type="number" id="phoneNo" {...register("phoneNo", {required: "You must enter you phone number"})}/>
+                            {errors.phoneNo && <p>{errors.phoneNo.message}</p>}
+
+                        </div>
+                        <div className="field">
                             <label htmlFor="username">Username:</label>
                             <input type="text" id="username" {...register("Username", {required: "You must enter a username"})}/>
                             {errors.Username && <p>{errors.Username.message}</p>}
@@ -216,6 +240,8 @@ export default function RegisterPagePost() {
                     <ReCaptcha
                     sitekey="6Le6_lQeAAAAAG_6B4F-OjL0mbth_UQLUihCtxiG"
                     ref={recaptchaRef}
+                    onChange={onReCAPTCHAChange}
+
                     />
                         <div className="field btn">
                             <div className="btn-layer"></div>
