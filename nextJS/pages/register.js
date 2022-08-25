@@ -134,15 +134,20 @@ export default function RegisterPagePost() {
                     {/* <form onSubmit={this.handleSubmit} className="Register"> ./api/validation/formValidation*/}
                         <div className="field">
                             <label htmlFor="firstname">First name:</label>
-                            <input type="text" id="firstname" {...register("firstname", {required: true})}/>
+                            <input type="text" id="firstname" {...register("firstname", {required: "You must enter a firstname"})}/>
+                            {errors.firstname && <p>{errors.firstname.message}</p>}
                         </div>
                         <div className="field">
                             <label htmlFor="lastname">Last name:</label>
-                            <input type="text" id="lastname" {...register("lastname", {required: true})}/>
+                            <input type="text" id="lastname" {...register("lastname", {required: "You must enter a lastname"})}/>
+                            {errors.lastname && <p>{errors.lastname.message}</p>}
+
                         </div>
                         <div className="field">
                             <label htmlFor="emailadd">Email:</label>
-                            <input type="email" id="emailadd" {...register("emailadd", {required: true})}/>
+                            <input type="email" id="emailadd" {...register("emailadd", {required: "You must enter a email"})}/>
+                            {errors.emailadd && <p>{errors.emailadd.message}</p>}
+
                         </div>
                         <div className="field">
                             <label htmlFor="user type">User type:</label><br/>
@@ -152,14 +157,20 @@ export default function RegisterPagePost() {
                                 <option value="type3">User type 3</option>
                                 {/* <option value="select" selected>--SELECT--</option> */}
                             </select>
+                            {errors.usertype && <p>{errors.usertype.message}</p>}
+
                         </div>
                         <div className="field">
                             <label htmlFor="age">Age:</label>
-                            <input type="number" id="age" {...register("age", {required: true})}/>
+                            <input type="number" id="age" {...register("age", {required: "You must enter a age"})}/>
+                            {errors.age && <p>{errors.age.message}</p>}
+
                         </div>
                         <div className="field">
                             <label htmlFor="username">Username:</label>
-                            <input type="text" id="username" {...register("Username", {required: true})}/>
+                            <input type="text" id="username" {...register("Username", {required: "You must enter a username"})}/>
+                            {errors.Username && <p>{errors.Username.message}</p>}
+
                         </div>
                         <div className="field">
                             {/* <label htmlFor="password">Password:</label>
