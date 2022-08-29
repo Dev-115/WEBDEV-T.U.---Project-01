@@ -82,6 +82,11 @@
     background: $bg-in;
 }
 
+@mixin input_removewebkit {
+    display: none;
+    -webkit-appearance: none;
+}
+
 @mixin input_border_clear{
     border: 0;
 }

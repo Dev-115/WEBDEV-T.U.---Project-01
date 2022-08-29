@@ -26,7 +26,7 @@ body {
   box-shadow: 2px 2px 5px 5px rgba(102, 102, 102, 0.144);
   background: #FFFFFF;
   width: 900px;
-  height: 500px;
+  height: 600px;
   overflow: hidden;
   display: flex;
   border-radius: 20px;
@@ -157,7 +157,7 @@ body {
   width: 100%;
 }
 .register_modal .register_box:last-child {
-  flex: 0 0 40%;
+  flex: 0 0 35%;
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
@@ -187,26 +187,15 @@ body {
   align-items: center;
   justify-content: center;
   align-content: center;
-  flex-wrap: nowrap;
 }
 .register_modal .register_box:last-child .register_container:nth-child(2) .register_item:nth-child(2) .register_subitem, .register_modal .register_box:last-child .register_container:nth-child(2) .register_item:nth-child(3) .register_subitem {
-  flex: 0 0 47.25%;
+  flex: 0 0 45%;
 }
 .register_modal .register_box:last-child .register_container:nth-child(2) .register_item:nth-child(2) .register_subitem:first-child, .register_modal .register_box:last-child .register_container:nth-child(2) .register_item:nth-child(3) .register_subitem:first-child {
-  padding-right: 10px;
+  padding-right: 15.5px;
 }
 .register_modal .register_box:last-child .register_container:nth-child(2) .register_item:nth-child(2) .register_subitem:last-child, .register_modal .register_box:last-child .register_container:nth-child(2) .register_item:nth-child(3) .register_subitem:last-child {
-  padding-left: 10px;
-}
-.register_modal .register_box:last-child .register_container:nth-child(2) .register_item:nth-child(3) .register_subitem:first-child {
-  flex: 0 0 25%;
-}
-.register_modal .register_box:last-child .register_container:nth-child(2) .register_item:nth-child(3) .register_subitem:nth-child(2) {
-  padding: 0 10px;
-  flex: 0 0 15%;
-}
-.register_modal .register_box:last-child .register_container:nth-child(2) .register_item:nth-child(3) .register_subitem:last-child {
-  flex: 0 0 45%;
+  padding-left: 15.5px;
 }
 .register_modal .register_box:last-child .register_container:nth-child(2) .register_item:last-child button {
   color: #fff;
@@ -226,6 +215,10 @@ body {
   border: 0;
   border-bottom: 1px solid #1e272e;
   border-radius: 0px 5px 5px 5px;
+}
+.register_modal .register_box:last-child .register_container:nth-child(2) .register_item input[type=date] + ::-webkit-inner-spin-button {
+  display: none;
+  -webkit-appearance: none;
 }
 .register_modal .register_box:last-child .register_container:nth-child(2) .register_item input:focus, .register_modal .register_box:last-child .register_container:nth-child(2) .register_item input:active {
   border: 0;
