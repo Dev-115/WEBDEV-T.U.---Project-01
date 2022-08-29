@@ -1,3 +1,10 @@
 // -----------------------------------------------------------------------------
 // This file contains all styles related to the button component.
 // -----------------------------------------------------------------------------
+
+.btn-ecl {
+    height: 45px;
+    width: 45px;
+    border-radius: 50%;
+    @include input_border_clear
+}

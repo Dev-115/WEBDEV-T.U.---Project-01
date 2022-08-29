@@ -5,11 +5,52 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
+    <title>Login</title>
 </head>
 
 <body>
-
+    <div class="login_modal">
+        <div class="login_box"></div>
+        <div class="login_box">
+            <div class="login_continer">
+                <!-- Logo -->
+                <!-- <img src="" alt=""> -->
+                <h1>Barbershop</h1>
+            </div>
+            <form class="login_container">
+                <div class="login_item">
+                    <input placeholder="Username" type="text">
+                </div>
+                <div class="login_item">
+                    <input placeholder="Password" type="text">
+                </div>
+                <div class="login_item">
+                    <!-- put recaptcha here -->
+                </div>
+                <div class="login_item">
+                    <button type="submit">LOGIN</button>
+                </div>
+                <div class="login_item">
+                    <button type="button">REGISTER</button>
+                </div>
+            </form>
+            <div class="login_container">
+                <div class="login_item">
+                    <span class="login_span">or</span>
+                </div>
+                <div class="login_item">
+                    <!-- Google OAuth Btn -->
+                    <button class="btn-ecl"><i class="bi bi-google"></i></button>
+                    <!-- Twitter OAuth Btn -->
+                    <button class="btn-ecl"><i class="bi bi-twitter"></i></button>
+                    <!-- Facebook OAuth Btn -->
+                    <button class="btn-ecl"><i class="bi bi-facebook"></i></button>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
 
 </html>

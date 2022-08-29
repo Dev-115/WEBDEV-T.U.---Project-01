@@ -1,3 +1,29 @@
 // -----------------------------------------------------------------------------
 // This file contains all application-wide Sass variables.
 // -----------------------------------------------------------------------------
+
+//Button Colors
+$color1: #1e272e;
+$color2: #808e9b;
+
+//Button on Hover & Active
+$colorhv1: #161d22;
+$colorhv2: #6d7883;
+
+// Google Login Icon Color
+$color-google: #DB4437;
+
+//Twitter Login Icon Color
+$color-twitter: #1DA1F2;
+
+//Facebook Login Icon Color
+$color-fb: #4267B2;
+
+// Background 
+$bg: #FFFFFF;
+$bg-in: #fafafa;
+
+// Background Image
+$loginbg: "../public/images/loginbg.jpg";
+$loginbg02: "../public/images/loginbg02.jpg";
+$regbg: "../public/images/regbg.jpg";
