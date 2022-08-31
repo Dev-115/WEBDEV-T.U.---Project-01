@@ -12,17 +12,22 @@
     box-shadow: 2px 2px 5px 5px rgba(102, 102, 102, 0.144);
 }
 
-// ------------------------------------------
+// Pages ------------------------------------
+
+@mixin default_vwh {
+    width: 100vw;
+    height: 100vh;
+}
 
 // Flex Config ------------------------------
 
-@mixin flex_prop1{
+@mixin flex_prop1 {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
 }
 
-@mixin flex_prop2{
+@mixin flex_prop2 {
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
@@ -61,7 +66,7 @@
 }
 
 
-@mixin btn_hover {
+@mixin btn01_hover {
     color: #dadada;
     background: $colorhv1;
     border: 1px solid $colorhv1;
@@ -73,12 +78,26 @@
     border: 1px solid $colorhv2;
 }
 
+@mixin btn01_active {
+    color: #dadada;
+    background: $coloract1;
+    border: 1px solid $coloract1;
+}
+
+@mixin btn02_active {
+    color: #dadada;
+    background: $coloract2;
+    border: 1px solid $coloract2;
+}
+
 // Input ------------------------------------
 
-@mixin input_style{
+@mixin input_style {
     width: 100%;
-    height: 40px;
+    height: 30px;
     padding: 5px 10px;
+    font-size: 16px;
+    font-family: inherit;
     background: $bg-in;
 }
 
@@ -87,7 +106,7 @@
     -webkit-appearance: none;
 }
 
-@mixin input_border_clear{
+@mixin input_border_clear {
     border: 0;
 }
 
@@ -119,6 +138,14 @@
     height: 100%;
     font-size: 20px;
     color: #ffffff;
+}
+
+// Images
+
+@mixin img_default {
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
 }
 
 // ------------------------------------------

@@ -59,27 +59,27 @@
                     border-radius: 20px;
                 }
             }
+            // Removed Btn
+            // .login_item:nth-child(4) {
+            //     button {
+            //         @include btn01();
 
-            .login_item:nth-child(4) {
-                button {
-                    @include btn01();
+            //         &:hover {
+            //             @include btn_hover();
+            //         }
+            //     }
+            // }
 
-                    &:hover {
-                        @include btn_hover();
-                    }
-                }
-            }
+            // .login_item:last-child {
+            //     button {
+            //         @include btn02();
 
-            .login_item:last-child {
-                button {
-                    @include btn02();
+            //         &:hover {
+            //             @include btn02_hover();
+            //         }
+            //     }
 
-                    &:hover {
-                        @include btn02_hover();
-                    }
-                }
-
-            }
+            // }
         }
 
         .login_container:last-child {
