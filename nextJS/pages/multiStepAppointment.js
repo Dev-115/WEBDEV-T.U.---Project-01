@@ -8,7 +8,7 @@ import AppointmentStep4 from '../components/appointmentStep4';
 import AppointmentStep5 from '../components/appointmentStep5';
 import AppointmentStepFinal from "../components/appointmentFinal";
 
-import { Button, Box, Stepper } from "@mantine/core"
+import { Button, Box, Stepper, Breadcrumbs, Anchor } from "@mantine/core"
 let renderCount = 0;
 
 export default function Index2Page() {
@@ -50,6 +50,16 @@ function handleSubmit () {
     setPage(page + 1);
   }
 
+  const items = [
+    { title: 'Home', href: '#' },
+    { title: 'Logged in', href: '#' },
+    { title: 'Appointment', href: '#' },
+  ].map((item, index) => (
+    <Anchor href={item.href} key={index}>
+      {item.title}
+    </Anchor>
+  ));
+
 const conditionalComponent = () => {
     switch (page) {
         case 0:
@@ -71,6 +81,8 @@ const conditionalComponent = () => {
   return (
     <>
     <Box>
+    <Breadcrumbs>{items}</Breadcrumbs>
+      <Breadcrumbs separator="→">{items}</Breadcrumbs>
     <Stepper active={page} onStepClick={setPage} breakpoint="sm">
             <Stepper.Step label="Service" description="Select an service"></Stepper.Step>
             <Stepper.Step label="Barber" description="Select a prefered stylist?"></Stepper.Step>

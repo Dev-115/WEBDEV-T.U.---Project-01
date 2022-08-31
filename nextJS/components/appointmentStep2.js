@@ -1,5 +1,5 @@
 import React from "react";
-import { Box, Title, Text, TextInput } from '@mantine/core';
+import { Box, Title, Text, Switch, NativeSelect } from '@mantine/core';
 
 const boxStyle = {
     width: '70%',
@@ -16,16 +16,27 @@ function appointmentStep2() {
       <Box
         sx={boxStyle}
       >
-        <Text>whats your beautiful namestep2?</Text>
+        <Text>whats the stylist's name</Text>
         <Box
           sx={{
             margin: '1rem 0',
           }}
         >
-          <TextInput
+            <Switch
+            label="AM / PM"
+            />
+            <NativeSelect
+                data={[{ value: '1', label: 'NAMe' }, { value: '2', label: 'Runes' }, { value: '2', label: 'sky' }, { value: '2', label: 'powdser' }]}
+                placeholder="Pick one"
+                label="Select your favorite Barber"
+                description="the stylist's name"
+                // error="Please select"
+                withAsterisk
+            />
+          {/* <TextInput
             placeholder="John Doe"
             required
-          />
+          /> */}
         </Box>
       </Box>
     );
