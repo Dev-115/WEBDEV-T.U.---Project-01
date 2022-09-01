@@ -1,3 +1,49 @@
 // -----------------------------------------------------------------------------
 // This file contains all styles related to the footer of the site/application.
 // -----------------------------------------------------------------------------
+.main_footer {
+    width: 100vw;
+    height: 30vh;
+    background: #16161D;
+    @include flex_prop2();
+    @include flex_center();
+
+    .flex_box {
+        @include flex_prop2();
+        @include flex_center();
+        gap: 10px;
+
+        .flex_item {
+            color: #F2F3F3;
+
+            h2 {
+                font-size: 36px;
+                line-height: 44.64px;
+                font-weight: 400;
+                text-align: center;
+                margin: 0;
+            }
+
+            span {
+                text-align: center;
+            }
+
+            &:last-child {
+                margin-top: 10px;
+
+                a {
+                    margin-right: 10px;
+
+                    &:last-child {
+                        margin-right: 0;
+                    }
+                }
+
+                i {
+                    font-size: 20px;
+                }
+            }
+        }
+
+    }
+}

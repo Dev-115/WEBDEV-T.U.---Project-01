@@ -40,6 +40,15 @@
 .section_hero02 {
     background: linear-gradient(180deg, rgba(0, 0, 0, 0.88) 11.6%, rgba(0, 0, 0, 0.458333) 65.01%, rgba(0, 0, 0, 0) 100%), url($herobg02);
     @include img_default();
+
+    .flex_box {
+        .flex_item {
+            button {
+                width: 25%;
+            }
+        }
+
+    }
 }
 
 .section_services {
@@ -49,7 +58,7 @@
     background: #F2F3F3;
     // Fix given Height of 100vh
     height: 100%;
-    padding: 20px;
+    padding: 40px 0;
 
     .flex_box {
         @include flex_prop2();
@@ -131,33 +140,86 @@
                     }
 
                     ul {
+                        margin: 0;
+                        padding: 0;
+
                         li {
                             @include flex_prop1();
                             width: 90%;
-                            padding: 0 20px;
+                            padding: 10px 20px;
                             border-bottom: 1px solid $color1;
                             list-style: none;
 
-                            &:first-child{
+                            &:first-child {
                                 border-top: .5px solid $color1;
                             }
 
-                            span:first-child{
+                            span:first-child {
                                 flex: 0 0 90%;
                             }
 
-                            span:last-child{
+                            span:last-child {
                                 flex: 0 0 10%;
                             }
-                            
+
                         }
                     }
 
                     p {
-                        width: 66%;
+                        width: 50%;
+                        size: 18px;
+                        line-height: 21.78px;
                     }
                 }
 
+            }
+        }
+    }
+}
+
+.section_testimonials {
+    @include flex_prop2();
+    @include flex_center();
+    padding: 50px 0px;
+    background: #C9CBCF;
+
+    .flex_box {
+        @include flex_prop2();
+        @include flex_center();
+        gap: 24px;
+
+        .flex_item {
+
+
+            .flex_box_nested {
+                @include flex_prop1();
+                @include flex_center();
+                gap: 20px;
+
+                .flex_item {
+                    width: 20vw;
+                    height: 10vh;
+                    padding: 10px 20px;
+                    background: #53535302;
+                    border: 1px solid #F2F3F3;
+                    // border-radius: 25px;
+                }
+
+                p {
+                    font-size: 24px;
+                    line-height: 29.05px;
+                    font-weight: 700;
+                }
+            }
+
+            h2 {
+                width: 550px;
+                font-size: 48px;
+                font-weight: 400;
+                line-height: 59.52px;
+                text-align: center;
+                font-weight: 400;
+                margin: 0;
             }
         }
     }
