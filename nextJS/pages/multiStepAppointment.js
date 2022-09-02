@@ -1,6 +1,5 @@
 import { useRouter } from "next/router";
 import React from "react";
-
 import AppointmentStep1 from '../components/appointmentStep1';
 import AppointmentStep2 from '../components/appointmentStep2';
 import AppointmentStep3 from '../components/appointmentStep3';
@@ -8,7 +7,7 @@ import AppointmentStep4 from '../components/appointmentStep4';
 import AppointmentStep5 from '../components/appointmentStep5';
 import AppointmentStepFinal from "../components/appointmentFinal";
 
-import { Button, Box, Stepper, Breadcrumbs, Anchor } from "@mantine/core"
+import { Button, Box, Stepper } from "@mantine/core"
 let renderCount = 0;
 
 export default function Index2Page() {
@@ -26,6 +25,8 @@ const [page, setPage] = React.useState(0);
 const handleBack = () => {
      setPage(page - 1);
 }
+const history = useRouter();
+
 
 function handleSubmit () {
     // if (page === 0) {
@@ -47,18 +48,17 @@ function handleSubmit () {
     //   } else if (page === 2) {
     //     // set page === 0 , and clear fields
     //   } else setPage(page + 1);
-    setPage(page + 1);
-  }
 
-  const items = [
-    { title: 'Home', href: '#' },
-    { title: 'Logged in', href: '#' },
-    { title: 'Appointment', href: '#' },
-  ].map((item, index) => (
-    <Anchor href={item.href} key={index}>
-      {item.title}
-    </Anchor>
-  ));
+    // if(page > 4 && page <= 0){
+    //     setPage(page + 1);
+    // }else{
+    //     console.log('page>>',page)
+    //     history.push("/path/to/push");
+        
+    // }
+    setPage(page + 1);
+
+  }
 
 const conditionalComponent = () => {
     switch (page) {
@@ -72,17 +72,16 @@ const conditionalComponent = () => {
             return <AppointmentStep4 />;
         case 4:
             return <AppointmentStep5 />;
-        case 5:
-            return <AppointmentStepFinal />;
+        // case 5:
+        //     return <AppointmentStepFinal />;
         default:
            return <AppointmentStep1 />;
        }
   }; 
+
   return (
     <>
     <Box>
-    <Breadcrumbs>{items}</Breadcrumbs>
-      <Breadcrumbs separator="→">{items}</Breadcrumbs>
     <Stepper active={page} onStepClick={setPage} breakpoint="sm">
             <Stepper.Step label="Service" description="Select an service"></Stepper.Step>
             <Stepper.Step label="Barber" description="Select a prefered stylist?"></Stepper.Step>
@@ -93,9 +92,8 @@ const conditionalComponent = () => {
         </Stepper.Completed>
       </Stepper>
         {conditionalComponent()}
-        <Button onClick={handleSubmit}>
-        { page === 0 || page < 5 ? "Next" : "Submit" }
-      </Button>
+        {page === 0 || page < 4 ? <Button onClick={handleSubmit}>Next</Button> : <Button onClick={handleSubmit}>Submit</Button> }
+        {/* {page <= 4 && formButton(page)} */}
         {
         page > 0 && <Button onClick={handleBack}>Back</Button>
         }
