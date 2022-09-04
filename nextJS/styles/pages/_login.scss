@@ -1,0 +1,117 @@
+// -----------------------------------------------------------------------------
+// This file contains styles that are specific to the Login page.
+// -----------------------------------------------------------------------------
+
+.login_modal {
+    @include pos_absolute_center();
+    background: $bg;
+    width: 900px;
+    height: 600px;
+    overflow: hidden;
+    display: flex;
+    border-radius: 20px;
+
+    .login_box:first-child {
+        background: url($loginbg02);
+        background-position: center;
+        background-size: 100% 100%;
+        background-repeat: no-repeat;
+        width: 100%;
+        // flex: 0 0 60%;
+    }
+
+    .login_box:last-child {
+        flex: 0 0 35%;
+        @include flex_prop2();
+        @include flex_center();
+        padding: 10px 30px;
+        width: 100%;
+        gap: 10px;
+
+        .login_container {
+            width: 100%;
+
+            .login_item {
+                width: 100%;
+            }
+        }
+
+        .login_container:nth-child(2) {
+            @include flex_prop2();
+            gap: 20px;
+
+            .login_item {
+
+                input {
+                    @include input_style();
+                    @include input_border_clear();
+                    @include input_border();
+                    @include border_style02();
+                    &:focus,
+                    &:active {
+                        @include input_focus();
+                    }
+                }
+
+                button {
+                    width: 100%;
+                    height: 35px;
+                    border-radius: 20px;
+                }
+            }
+            // Removed Btn
+            // .login_item:nth-child(4) {
+            //     button {
+            //         @include btn01();
+
+            //         &:hover {
+            //             @include btn_hover();
+            //         }
+            //     }
+            // }
+
+            // .login_item:last-child {
+            //     button {
+            //         @include btn02();
+
+            //         &:hover {
+            //             @include btn02_hover();
+            //         }
+            //     }
+
+            // }
+        }
+
+        .login_container:last-child {
+            // Or in between lines
+            // .login_span {}
+            @include flex_prop1();
+            @include flex_center();
+            gap: 20px;
+
+            .login_item:last-child {
+                @include flex_prop1();
+                @include flex_center();
+                gap: 10px;
+
+                button {
+                    i {
+                        @include icons_default();
+                    }
+                }
+
+                .btn-ecl:first-child {
+                    background: $color-google;
+                }
+
+                .btn-ecl:nth-child(2) {
+                    background: $color-twitter;
+                }
+
+                .btn-ecl:last-child {
+                    background: $color-fb;
+                }
+            }
+        }
+    }
+}

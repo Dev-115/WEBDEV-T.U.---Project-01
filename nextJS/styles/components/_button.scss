@@ -1,0 +1,49 @@
+// -----------------------------------------------------------------------------
+// This file contains all styles related to the button component.
+// -----------------------------------------------------------------------------
+
+// System Buttons =================================
+.btn_primary {
+    @include btn01();
+    // Hover
+    &:hover{
+        @include btn01_hover();
+    }
+    // Active
+    &:active{
+        @include btn01_active();
+    }
+    // Focus - too lazy too add
+    // &:focus{
+    //     @include btn01_focus();
+    // }
+    padding: 10px;
+    border-radius: 25px;
+}
+
+.btn_secondary {
+    @include btn02();
+    // Hover
+    &:hover{
+        @include btn02_hover();
+    }
+    // Active
+    &:active{
+        @include btn02_active();
+    }
+    // Focus - too lazy too add
+    // &:focus{
+    //     @include btn02_focus();
+    // }
+    
+    padding: 10px;
+    border-radius: 25px;
+}
+
+// Login Button for OAuth ===========================
+.btn-ecl {
+    height: 45px;
+    width: 45px;
+    border-radius: 50%;
+    @include input_border_clear
+}

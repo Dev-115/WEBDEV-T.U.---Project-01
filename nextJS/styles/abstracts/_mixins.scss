@@ -1,0 +1,151 @@
+// -----------------------------------------------------------------------------
+// This file contains all application-wide Sass mixins.
+// -----------------------------------------------------------------------------
+
+// Modal ------------------------------------
+
+@mixin pos_absolute_center {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    box-shadow: 2px 2px 5px 5px rgba(102, 102, 102, 0.144);
+}
+
+// Pages ------------------------------------
+
+@mixin default_vwh {
+    width: 100vw;
+    height: 100vh;
+}
+
+// Flex Config ------------------------------
+
+@mixin flex_prop1 {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+@mixin flex_prop2 {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+}
+
+@mixin flex_center {
+    align-items: center;
+    justify-content: center;
+    align-content: center;
+}
+
+@mixin flex_rightcenter {
+    align-items: flex-end;
+    justify-content: center;
+    align-content: center;
+}
+
+@mixin flex_spaceeven {
+    align-items: center;
+    justify-content: space-evenly;
+    align-content: center;
+}
+
+// Button -----------------------------
+
+@mixin btn01 {
+    color: #fff;
+    background: $color1;
+    border: 1px solid $color1;
+}
+
+@mixin btn02 {
+    color: #fff;
+    background: $color2;
+    border: 1px solid $color2;
+}
+
+
+@mixin btn01_hover {
+    color: #dadada;
+    background: $colorhv1;
+    border: 1px solid $colorhv1;
+}
+
+@mixin btn02_hover {
+    color: #dadada;
+    background: $colorhv2;
+    border: 1px solid $colorhv2;
+}
+
+@mixin btn01_active {
+    color: #dadada;
+    background: $coloract1;
+    border: 1px solid $coloract1;
+}
+
+@mixin btn02_active {
+    color: #dadada;
+    background: $coloract2;
+    border: 1px solid $coloract2;
+}
+
+// Input ------------------------------------
+
+@mixin input_style {
+    width: 100%;
+    height: 30px;
+    padding: 5px 10px;
+    font-size: 16px;
+    font-family: inherit;
+    background: $bg-in;
+}
+
+@mixin input_removewebkit {
+    display: none;
+    -webkit-appearance: none;
+}
+
+@mixin input_border_clear {
+    border: 0;
+}
+
+@mixin input_border {
+    border-bottom: 1px solid $color1;
+}
+
+@mixin input_focus {
+    border: 0;
+    outline: none;
+    border-bottom: 2px solid $color1;
+}
+
+// Border Radius ----------------------------
+
+@mixin border_style01 {
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+}
+
+@mixin border_style02 {
+    border-radius: 0px 5px 5px 5px;
+}
+
+// Icons ------------------------------------
+
+@mixin icons_default {
+    width: 100%;
+    height: 100%;
+    font-size: 20px;
+    color: #ffffff;
+}
+
+// Images
+
+@mixin img_default {
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+}
+
+// ------------------------------------------
