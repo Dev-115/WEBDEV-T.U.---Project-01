@@ -21,13 +21,13 @@ export default function NavComponent() {
   // }
     return (
       <>
-        <nav class="main_nav">
-        <div class="nav_item">
+        <nav className="main_nav">
+        <div className="nav_item">
             <div>
                 Barbershop/Salon
             </div>
         </div>
-        <div class="nav_item">
+        <div className="nav_item">
         <Link href="/">Home</Link>
         <Link href="/services">Services</Link>
         <Link href="/About">About Us</Link>
@@ -38,10 +38,10 @@ export default function NavComponent() {
       </>:  <Link href="/multiStepAppointment">Book Appointment</Link>}
         <Link href="/Contact">Contact</Link>
         </div>
-        <div class="nav_item">
+        <div className="nav_item">
             {/* <LoginBtn>hello</LoginBtn>
             <Link href="/register2"><button class="btn_primary">Register</button></Link> */}
-            {status === "unauthenticated" ?  <><LoginBtn></LoginBtn><Link href="/register2"><button class="btn_primary">Register</button></Link>
+            {status === "unauthenticated" ?  <><LoginBtn></LoginBtn><Link href="/register2"><button className="btn_primary">Register</button></Link>
       </>:  <LoginBtn>hello</LoginBtn>}
             
         </div>
