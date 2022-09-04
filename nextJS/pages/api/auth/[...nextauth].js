@@ -103,6 +103,9 @@ export default NextAuth({
       }),
     // ...add more providers here
   ],
+  pages: {
+    signIn: '/login',
+  },
 
   session: {
     // Choose how you want to save the user session.

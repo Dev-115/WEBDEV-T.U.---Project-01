@@ -1,5 +1,5 @@
-import styles from '../styles/main.css';
-
+import '../styles/main.css';
+import FooterComponent from '../components/footercomponent';
 import { SessionProvider } from "next-auth/react"
 
 
@@ -10,6 +10,7 @@ export default function App({
   return (
     <SessionProvider session={session}>
       <Component {...pageProps} />
+      <FooterComponent/>
     </SessionProvider>
   )
 }
