@@ -6,6 +6,8 @@ import AppointmentStep3 from '../components/appointmentStep3';
 import AppointmentStep4 from '../components/appointmentStep4';
 import AppointmentStep5 from '../components/appointmentStep5';
 import AppointmentStepFinal from "../components/appointmentFinal";
+import HeaderComponent from '../components/headercomponent'
+import NavComponent from "../components/navBar";
 
 import { Button, Box, Stepper } from "@mantine/core"
 let renderCount = 0;
@@ -81,6 +83,8 @@ const conditionalComponent = () => {
 
   return (
     <>
+        <HeaderComponent>Book Appointment</HeaderComponent>
+        <NavComponent/>
     <Box>
     <Stepper active={page} onStepClick={setPage} breakpoint="sm">
             <Stepper.Step label="Service" description="Select an service"></Stepper.Step>

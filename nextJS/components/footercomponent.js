@@ -3,6 +3,7 @@ export default function footerComponent() {
   return (
     <>
     <footer className="main_footer">
+
         <div className="flex_box">
             <div className="flex_item">
                 <h2>Barbers</h2>
