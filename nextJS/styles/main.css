@@ -489,7 +489,14 @@ a:active {
   background: linear-gradient(180deg, rgba(0, 0, 0, 0.88) 11.6%, rgba(0, 0, 0, 0.458333) 65.01%, rgba(0, 0, 0, 0) 100%), url("../public/images/herobg01.jpg");
   background-position: center;
   background-repeat: no-repeat;
-  background-size: 100% 100%;
+  background-size: 100% auto;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+@media (min-width: 1200px) {
+  .section_hero {
+    background-size: auto 100%;
+  }
 }
 .section_hero .flex_box .flex_item {
   display: flex;
@@ -578,41 +585,73 @@ a:active {
   width: 85vw;
   overflow: hidden;
 }
+.section_services .flex_box .flex_box_nested > .flex_item:nth-child(2) {
+  flex-direction: column-reverse;
+}
 .section_services .flex_box .flex_box_nested .flex_item {
   display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  flex-wrap: nowrap;
+  flex-direction: column;
+  padding: 0px;
+}
+@media (min-width: 1200px) {
+  .section_services .flex_box .flex_box_nested .flex_item {
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: 1fr;
+  }
 }
 .section_services .flex_box .flex_box_nested .flex_item .flex_img {
-  flex: 0 0 50%;
-  width: 100%;
   height: 533px;
+  align-self: stretch;
+}
+@media (min-width: 1200px) {
+  .section_services .flex_box .flex_box_nested .flex_item .flex_img {
+    height: 100%;
+  }
 }
 .section_services .flex_box .flex_box_nested .flex_item .flex_img:first-child {
   background: url("../public/images/servicebg01.jpg");
   background-position: center;
   background-repeat: no-repeat;
-  background-size: 100% 100%;
+  background-size: 100% auto;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
-.section_services .flex_box .flex_box_nested .flex_item .flex_img:nth-child(2) {
+@media (min-width: 1200px) {
+  .section_services .flex_box .flex_box_nested .flex_item .flex_img:first-child {
+    background-size: auto 100%;
+  }
+}
+.section_services .flex_box .flex_box_nested .flex_item:nth-child(2) .flex_img {
   background: url("../public/images/servicebg02.jpg");
   background-position: center;
   background-repeat: no-repeat;
-  background-size: 100% 100%;
+  background-size: 100% auto;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+@media (min-width: 1200px) {
+  .section_services .flex_box .flex_box_nested .flex_item:nth-child(2) .flex_img {
+    background-size: auto 100%;
+  }
 }
 .section_services .flex_box .flex_box_nested .flex_item:last-child .flex_img {
   background: url("../public/images/servicebg03.jpg");
   background-position: center;
   background-repeat: no-repeat;
-  background-size: 100% 100%;
+  background-size: 100% auto;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+@media (min-width: 1200px) {
+  .section_services .flex_box .flex_box_nested .flex_item:last-child .flex_img {
+    background-size: auto 100%;
+  }
 }
 .section_services .flex_box .flex_box_nested .flex_item .flex_subitem {
-  flex: 0 0 47.4%;
-  padding: 20px;
+  padding: 1.5rem;
   border: 1px solid #1e272e;
-  width: 100%;
-  height: 491px;
+  height: auto;
 }
 .section_services .flex_box .flex_box_nested .flex_item .flex_subitem h2 {
   text-align: left;
@@ -620,29 +659,22 @@ a:active {
 .section_services .flex_box .flex_box_nested .flex_item .flex_subitem ul {
   margin: 0;
   padding: 0;
+  width: 100%;
 }
 .section_services .flex_box .flex_box_nested .flex_item .flex_subitem ul li {
   display: flex;
   flex-direction: row;
-  flex-wrap: wrap;
-  width: 90%;
-  padding: 10px 20px;
+  justify-content: space-between;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 1rem;
   border-bottom: 1px solid #1e272e;
   list-style: none;
 }
-.section_services .flex_box .flex_box_nested .flex_item .flex_subitem ul li:first-child {
-  border-top: 0.5px solid #1e272e;
-}
-.section_services .flex_box .flex_box_nested .flex_item .flex_subitem ul li span:first-child {
-  flex: 0 0 90%;
-}
-.section_services .flex_box .flex_box_nested .flex_item .flex_subitem ul li span:last-child {
-  flex: 0 0 10%;
-}
 .section_services .flex_box .flex_box_nested .flex_item .flex_subitem p {
-  width: 50%;
-  size: 18px;
-  line-height: 21.78px;
+  width: 66%;
+  size: 1rem;
+  line-height: 1.35rem;
 }
 
 .section_testimonials {
