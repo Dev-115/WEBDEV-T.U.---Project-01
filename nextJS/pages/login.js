@@ -7,14 +7,14 @@ import HeaderComponent from '../components/headercomponent';
 import NavComponent from '../components/navBar';
 import Link from 'next/link';
 
-// const TennorGif  = () => (
-//   <Image
-//     src="/images/f7f97425cafd67695409db84dc60871a.gif" // Route of the image file //
-//     height={144} // Desired size with correct aspect ratio
-//     width={144} // Desired size with correct aspect ratio
-//     alt="Your Name"
-//   />
-// );
+const TennorGif  = () => (
+  <Image
+    src="/images/f7f97425cafd67695409db84dc60871a.gif" // Route of the image file //
+    height={144} // Desired size with correct aspect ratio
+    width={144} // Desired size with correct aspect ratio
+    alt="Your Name"
+  />
+);
 
 export default function LoginPagePost({ providers, csrfToken  }) {
     return (
@@ -26,7 +26,7 @@ export default function LoginPagePost({ providers, csrfToken  }) {
         <div className="login_box"></div>
         <div className="login_box">
             <div className="login_continer">
-              {/* LOGO HERE */}
+              <TennorGif/>
                 <h1>Barbershop</h1>
             </div>
             <form className="login_container" method="post" action="/api/auth/callback/credentials">
