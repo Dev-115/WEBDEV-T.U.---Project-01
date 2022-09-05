@@ -27,6 +27,18 @@
     flex-wrap: wrap;
 }
 
+@mixin flex-row-between {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+@mixin flex-col-between {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
 @mixin flex_prop2 {
     display: flex;
     flex-direction: column;
@@ -141,11 +153,24 @@
 }
 
 // Images
-
-@mixin img_default {
+@mixin img_ {
+    
     background-position: center;
     background-repeat: no-repeat;
+}
+
+@mixin img_default {
+    @include img_();
+    background-size: 100% auto;
+    @media (min-width: 1200px) {
+        background-size: auto 100%;
+    }
+    object-fit: cover;
+}
+@mixin img_hero {
+    @include img_();
     background-size: 100% 100%;
+    // object-fit: fill;
 }
 
 // ------------------------------------------
