@@ -8,7 +8,8 @@ import Layout from '../components/layout';
 import LoginBtn from '../components/login-btn';
 import ReCaptcha from 'react-google-recaptcha'
 import { set, useForm } from "react-hook-form";
-
+import HeaderComponent from '../components/headercomponent'
+import NavComponent from "../components/navBar";
 // let renderCount = 0;
 
 // Encrypt
@@ -57,6 +58,8 @@ export default function RegisterPagePost() {
     const onSubmit = async (data) => {
 
         var CryptoJS = require("crypto-js");
+
+        data['usertype'] = 'null';
 
 
         // Stop the form from submitting and refreshing the page.
@@ -134,72 +137,84 @@ export default function RegisterPagePost() {
 
     return (
         <>
-        <Head>
-        <meta charset="UTF-8"/>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <link rel="stylesheet" href="styles/main.css"/>
-
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css"/>
-
-
-    <link rel="preconnect" href="https://fonts.googleapis.com"/>
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-    <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville&display=swap" rel="stylesheet"/>
-    <link rel="preconnect" href="https://fonts.googleapis.com"/>
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-    <link href="https://fonts.googleapis.com/css2?family=Inter&display=swap" rel="stylesheet"/>
-    <title>Register</title>
-      </Head>
-      <div class="register_modal">
-        <div class="register_box"></div>
-        <div class="register_box">
-            <div class="register_container">
+        <HeaderComponent>Register</HeaderComponent>
+        <NavComponent/>
+      <div className="register_modal">
+        <div className="register_box"></div>
+        <div className="register_box">
+            <div className="register_container">
                 {/* logo HERE */}
                 <h1>Barbershop</h1>
             </div>
-            <form class="register_container">
-                <div class="register_item">
-                    <input placeholder="User Type" type="text" hidden/>
+            <form className="register_container" onSubmit={handleSubmit(onSubmit)} method="post">
+                <div className="register_item">
+                {/* <select id="usertype" hidden {...register("usertype", {required: true})}>
+                                <option value="type1">User type 1</option>
+                                <option value="type2">User type 2</option>
+                                <option value="type3">User type 3</option>
+                                <option value="select" defaultValue>--SELECT--</option>
+                            </select>
+                            {errors.usertype && <p>{errors.usertype.message}</p>} */}
                 </div>
-                <div class="register_item">
-                    <div class="register_subitem">
-                        <input placeholder="First Name" type="text"/>
+                <div className="register_item">
+                    <div className="register_subitem">
+                        <input placeholder="First Name" type="text"{...register("firstname", {required: "You must enter a firstname"})}/>
+                            {errors.firstname && <p>{errors.firstname.message}</p>}
                     </div>
-                    <div class="register_subitem">
-                        <input placeholder="Last Name" type="text"/>
+                    <div className="register_subitem">
+                        <input placeholder="Last Name" type="text"{...register("lastname", {required: "You must enter a lastname"})}/>
+                            {errors.lastname && <p>{errors.lastname.message}</p>}
                     </div>
                 </div>
-                <div class="register_item">
-                    <div class="register_subitem">
-                        <input placeholder="Birthday" type="date"/>
+                <div className="register_item">
+                    <div className="register_subitem">
+                        <input placeholder="Birthday" type="date"{...register("Birthday", {required: "You must enter a birtday?"})}/>
+                            {errors.age && <p>{errors.age.message}</p>}
                     </div>
-                    <div class="register_subitem">
-                        <input placeholder="Age" type="number"/>
+                    <div className="register_subitem">
+                        <input placeholder="Age" type="number"{...register("age", {required: "You must enter a age"})}/>
+                            {errors.age && <p>{errors.age.message}</p>}
                     </div>
    
                 </div>
-                <div class="register_item">
-                    <input placeholder="Email" type="text"/>
+                <div className="register_item">
+                    <input placeholder="Email" type="email" {...register("emailadd", {required: "You must enter a email"})}/>
+                            {errors.emailadd && <p>{errors.emailadd.message}</p>}
                 </div>
-                <div class="register_item">
-                    <input placeholder="Username" type="text"/>
+                <div className="register_item">
+                    <input placeholder="Username" type="text" {...register("Username", {required: "You must enter a username"})}/>
+                            {errors.Username && <p>{errors.Username.message}</p>}
                 </div>
-                <div class="register_item">
-                    <input placeholder="Password" type="text"/>
+                <div className="register_item">
+                    <input placeholder="Password" type="text"{...register("password", 
+                                {required: "You must specify a password"})}
+                            />
+                            {errors.password && <p>{errors.password.message}</p>}
                 </div>
-                <div class="register_item">
-                    <input placeholder="Confirm Password" type="text"/>
+                <div className="register_item">
+                    <input placeholder="Confirm Password" type="text"                                {...register("confirmpassword",
+                                 {validate: value =>
+                                    value === password2.current || "The passwords do not match"}
+                                    )}
+                            />
+                            {errors.confirmpassword && <p>{errors.confirmpassword.message}</p>}
+
                 </div>
-                <div class="register_item">
-                    <button class="btn_primary" type="submit">SUBMIT</button>
+                <ReCaptcha
+                    sitekey="6Le6_lQeAAAAAG_6B4F-OjL0mbth_UQLUihCtxiG"
+                    ref={recaptchaRef}
+                    onChange={onReCAPTCHAChange}
+
+                    />
+                <div className="register_item">
+                    <button className="btn_primary" type="submit">SUBMIT</button>
                 </div>
             </form>
-            <div class="register_container">
-                <div class="register_item">
+            <div className="register_container">
+                <div className="register_item">
                     <hr/>
                 </div>
-                <div class="register_item">
+                <div className="register_item">
                     <p>Already have an Account? <a href="#">Login...</a></p>
                 </div>
             </div>

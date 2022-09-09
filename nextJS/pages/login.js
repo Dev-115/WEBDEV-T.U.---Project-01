@@ -1,12 +1,11 @@
-import Link from 'next/link';
-import Head from 'next/head';//heder editw
-import Script from 'next/script'; // add scripts 
+
 /** strategy controls when the third-party script should load. A value of lazyOnload tells Next.js to load this particular script lazily during browser idle time
 onLoad is used to run any JavaScript code immediately after the script has finished loading. In this example, we log a message to the console that mentions that the script has loaded correctly */
-import Layout from '../components/layout';
-import LoginBtn from '../components/login-btn';
-
+import { getProviders, signIn, getSession, csrfToken, getCsrfToken } from "next-auth/react";
 import Image from 'next/image';
+import HeaderComponent from '../components/headercomponent';
+import NavComponent from '../components/navBar';
+import Link from 'next/link';
 
 const TennorGif  = () => (
   <Image
@@ -17,68 +16,64 @@ const TennorGif  = () => (
   />
 );
 
-export default function LoginPagePost() {
+export default function LoginPagePost({ providers, csrfToken  }) {
     return (
         <>
-        <Head>
-        <title>Login</title>
-        {/* <Script
-        src="https://connect.facebook.net/en_US/sdk.js"
-        strategy="lazyOnload"
-        onLoad={() =>
-          console.log(`script loaded correctly, window.FB has been populated`)
-        }
-      /> */}
-          <meta charset="UTF-8"/>
-          <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-          <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-          <link rel="stylesheet" href="styles/main.css"/>
-          <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css"/>
-          <link rel="preconnect" href="https://fonts.googleapis.com"/>
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-    <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville&display=swap" rel="stylesheet"/>
-    <link rel="preconnect" href="https://fonts.googleapis.com"/>
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-    <link href="https://fonts.googleapis.com/css2?family=Inter&display=swap" rel="stylesheet"/>
-    <title>Login</title>
-      </Head>
-            <LoginBtn></LoginBtn>
-            <Link href="/trial">mypage</Link>
-            <div class="login_modal">
-        <div class="login_box"></div>
-        <div class="login_box">
-            <div class="login_continer">
-              {/* LOGO HERE */}
+        <HeaderComponent>Login</HeaderComponent>
+        <NavComponent/>
+            
+            <div className="login_modal">
+        <div className="login_box"></div>
+        <div className="login_box">
+            <div className="login_continer">
+              <TennorGif/>
                 <h1>Barbershop</h1>
             </div>
-            <form class="login_container">
-                <div class="login_item">
-                    <input placeholder="Username" type="text"/>
+            <form className="login_container" method="post" action="/api/auth/callback/credentials">
+            <input name="csrfToken" type="hidden" defaultValue={csrfToken} />
+
+                <div className="login_item">
+                    <input placeholder="email" name="username" id="username"type="text"/>
                 </div>
-                <div class="login_item">
-                    <input placeholder="Password" type="text"/>
+                <div className="login_item">
+                    <input placeholder="Password" name="password" id="password" type="password"/>
                 </div>
-                <div class="login_item">
+                <div className="login_item">
                 </div>
-                <div class="login_item">
-                    <button class="btn_primary" type="submit">LOGIN</button>
-                </div>
-                <div class="login_item">
-                    <button class="btn_secondary" type="button">REGISTER</button>
+                <div className="login_item">
+
+                <button type="submit">Sign in</button>
+ 
                 </div>
             </form>
-            <div class="login_container">
-                <div class="login_item">
-                    <span class="login_span">or</span>
+                    <div className="login_item">
+                    <Link href="/register2"><button className="btn_secondary" type="button">REGISTER</button></Link>
                 </div>
-                <div class="login_item">
-                    <button class="btn-ecl"><i class="bi bi-google"></i></button>
-                    <button class="btn-ecl"><i class="bi bi-twitter"></i></button>
-                    <button class="btn-ecl"><i class="bi bi-facebook"></i></button>
+            <div className="login_container">
+                <div className="login_item">
+                    <span className="login_span">or</span>
+                </div>
+                <div className="login_item">
+                                    {/* {Object.values(providers).slice(1).map((provider) => (
+                        <div key={provider.name}>
+                        <button class="btn-ecl" onClick={() => signIn(provider.id)}><i class="bi bi-google"></i></button>
+                        </div>
+                    ))} 
+                                    console.log(providers) */}
+                    <button className="btn-ecl" onClick={() => signIn('google', { callbackUrl: 'http://localhost:3000/multiStepAppointment' })}><i className="bi bi-google"></i></button>
+                    <button className="btn-ecl"><i className="bi bi-twitter"></i>not working</button>
+                    <button className="btn-ecl"><i className="bi bi-facebook"></i>not working</button>
                 </div>
             </div>
         </div>
     </div>
       </>
     )
+  }
+
+  export async function getServerSideProps(context) {
+    const providers = await getProviders()
+    return {
+      props: { providers,  csrfToken: await getCsrfToken(context), },
+    }
   }

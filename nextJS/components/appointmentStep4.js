@@ -1,23 +1,42 @@
-// import { Box, Button, Title, Text, TextInput  } from '@mantine/core';
-import React from "react";
-import { TimeRangeInput  } from '@mantine/dates';
+import { Select  } from '@mantine/core';
 
-function appointmentStep4() {
+import dayjs from 'dayjs';
+import React from "react";
+
+ export default function ({childToParent4}) {
     // const now = new Date();
     // const newDateObj = new Date(now.getTime() + 60000);
-    const [value, setValue] = React.useState();
+
+    // const now = new Date();
+    // const then = dayjs(now).add(30, 'minutes').toDate();
+    // const [value, setValue] = React.useState([Date, Date]);
+
+    // console.log(now)
+    // const [value, setValue] = React.useState([Date, Date])([now, then]);
+  
+    const picDNT = (e) =>{
+        // setStep2(e);
+        // childToParent({dateAppoint:e, dateDNT:null});
+        // console.log(e);
+        // childToParent4({timeAppoint:e});
+        childToParent4({timeAppoint: e});
+
+    }
+
+
     return (
         <>
-         <TimeRangeInput 
-            // defaultValue={new Date()}
-            label="Appointment time"
-            format="12"
-            // value={now}
-            withAsterisk
-            onChange={setValue}
-            clearable
+    {/* {setValue([now, now])} */}
+    <Select
+                data={[{ value: '1:00-2:00PM', label: '1:00-2:00PM' }, { value: '2:00-3:00PM', label: '2:00-3:00PM' }, { value: '4:00-5:00PM', label: '4:00-5:00PM' }, { value: '6:00-7:00PM', label: '6:00-7:00PM' }]}
+                placeholder="Pick one"
+                label="Select your Appointment Time"
+                description="please be on time "
+                name="imeee"
+                withAsterisk
+                onChange={ (e) => picDNT(e) }
+                
             />
         </>
     );
   }
-  export default appointmentStep4;

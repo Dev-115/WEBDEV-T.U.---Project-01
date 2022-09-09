@@ -21,7 +21,10 @@ export default function trailPost() {
   }
 
   if (status === "unauthenticated") {
-    return <p>Access Denied</p>
+    return (
+      <><p>Access Denied</p>
+      <LoginBtn></LoginBtn></>
+    )
   }
 
   
