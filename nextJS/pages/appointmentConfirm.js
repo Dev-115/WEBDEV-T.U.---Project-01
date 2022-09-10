@@ -1,10 +1,5 @@
 import { useRouter } from "next/router";
 import React from "react";
-import AppointmentStep1 from '../components/appointmentStep1';
-import AppointmentStep2 from '../components/appointmentStep2';
-import AppointmentStep3 from '../components/appointmentStep3';
-import AppointmentStep4 from '../components/appointmentStep4';
-import AppointmentStep5 from '../components/appointmentStep5';
 import AppointmentStepFinal from "../components/appointmentFinal";
 import HeaderComponent from '../components/headercomponent'
 import NavComponent from "../components/navBar";
@@ -14,18 +9,11 @@ import Link from 'next/link';
 import { Button, Box, Stepper } from "@mantine/core"
 let renderCount = 0;
 
-export default function Index2Page() {
+export default function appointmentConfirmPage() {
     
         renderCount += 1;
-        console.log(`${Index2Page.name}. renderCount: `, renderCount);
+        console.log(`${appointmentConfirmPage.name}. renderCount: `, renderCount);
 
-const [formData, setFormData] = React.useState({
-    name: '',
-    email: '',
-    employment_status: null
-  });
-
-const [page, setPage] = React.useState(0);
 const handleBack = () => {
     history.push("/multiStepAppointment")
 }
@@ -63,31 +51,13 @@ function handleSubmit () {
 
   }
 
-const conditionalComponent = () => {
-    switch (page) {
-        // case 0:
-        //     return <AppointmentStep1 />;
-        // case 1:
-        //    return <AppointmentStep2 />;
-        // case 2:
-        //    return <AppointmentStep3 />;
-        // case 3:
-        //     return <AppointmentStep4 />;
-        // case 4:
-        //     return <AppointmentStep5 />;
-        // case 5:
-        //     return <AppointmentStepFinal />;
-        // default:
-        //    return <AppointmentStep1 />;
-       }
-  }; 
 
   return (
     <>
         <HeaderComponent>Book Appointment</HeaderComponent>
         <NavComponent/>
     <Box>
-    <Stepper active={page} onStepClick={setPage} breakpoint="sm">
+    <Stepper active={5} breakpoint="sm">
             <Stepper.Step label="Service" description="Select an service"></Stepper.Step>
             <Stepper.Step label="Barber" description="Select a prefered stylist?"></Stepper.Step>
             <Stepper.Step label="Date" description="Select a date"></Stepper.Step>

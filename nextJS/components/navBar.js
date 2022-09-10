@@ -31,6 +31,7 @@ export default function NavComponent() {
         <Link href="/">Home</Link>
         <Link href="/services">Services</Link>
         <Link href="/About">About Us</Link>
+        <Link href="/Appointments">Appointments</Link>
         {/*  */}
          {/* <LoginBtn>hello</LoginBtn>
             <Link href="/register2"><button class="btn_primary">Register</button></Link> */}

@@ -28,7 +28,7 @@ function appointmentStep3({childToParent3}) {
         // setStep2(e);
         // childToParent({dateAppoint:e, dateDNT:null});
         // console.log(e);
-        childToParent3({dateAppoint:e, dateDNT:'AM'});
+        childToParent3({dateAppoint:e, ampm:dNT});
 
     }
   return (

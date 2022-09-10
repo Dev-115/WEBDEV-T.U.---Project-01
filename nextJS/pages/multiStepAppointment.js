@@ -5,36 +5,37 @@ import AppointmentStep2 from '../components/appointmentStep2';
 import AppointmentStep3 from '../components/appointmentStep3';
 import AppointmentStep4 from '../components/appointmentStep4';
 import AppointmentStep5 from '../components/appointmentStep5';
-import AppointmentStepFinal from "../components/appointmentFinal";
 import HeaderComponent from '../components/headercomponent'
 import NavComponent from "../components/navBar";
-import { set, useForm } from "react-hook-form";
 
 
 import { Button, Box, Stepper } from "@mantine/core"
 let renderCount = 0;
 
-export default function Index2Page() {
+export default function multiStepPage() {
     
         renderCount += 1;
-        console.log(`${Index2Page.name}. renderCount: `, renderCount);
+        console.log(`${multiStepPage.name}. renderCount: `, renderCount);
+        const router = useRouter()
+        console.log(router.query);
 
 const [page, setPage] = React.useState(0);
-const { register, watch, handleSubmit, formState:{errors} } = useForm();
 const handleBack = () => {
      setPage(page - 1);
 }
 const history = useRouter();
 
-// const [data, setData] = React.useState([
-//     chip1service,
-//     chip2service,
-//     namebarber,
-//     dateappointment,
-//     timeappointment,
-// ]);4:childdata.barberName,5:dateAppoint,6:timeAppoint
-
 const [shopCart, setShopCart] = React.useState({});
+
+if(renderCount == 2){
+    setShopCart(shopCart => ({
+        ...shopCart,
+        ...router.query
+    }));
+}
+
+
+
 const childToParent1 = (childdata) => {
 
     let updatedValue = {
@@ -142,7 +143,7 @@ const conditionalComponent = () => {
         <HeaderComponent>Book Appointment</HeaderComponent>
         <NavComponent/>
     <Box>
-        <form  className="" onSubmit={handleSubmit(handleSubmit2)} method="post">
+        <form  className="" onSubmit={handleSubmit2} method="post">
     <Stepper active={page} onStepClick={setPage} breakpoint="sm">
             <Stepper.Step label="Service" description="Select an service"></Stepper.Step>
             <Stepper.Step label="Barber" description="Select a prefered stylist?"></Stepper.Step>

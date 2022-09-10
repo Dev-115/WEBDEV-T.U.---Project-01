@@ -9,7 +9,7 @@ function appointmentStep5({parentToChild}) {
         <>
                 <Title>Does this sound right</Title>
                 <Text>Appointment for jeremy de guszman</Text>
-                <Chip value="1">{parentToChild.serviceSelection}</Chip>
+                <Chip checked={true} value="1">{parentToChild.serviceSelection}</Chip>
                 <Text>your Barber is {parentToChild.staffBarber}</Text>
                 <Text>at address of shop on {parentToChild.timeAppoint}</Text>
                 <Text>at {datashort}</Text>
