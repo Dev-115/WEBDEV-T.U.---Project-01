@@ -55,3 +55,127 @@ model VerificationToken {
 
   @@unique([identifier, token])
 }
+
+
+
+
+model Branch {
+  id Int @id @default(autoincrement())
+  name String @unique
+  address String
+  service Service[]
+  barber Barber[]
+}
+
+model Service {
+  id Int @id @default(autoincrement())
+  category Category
+  branch Branch @relation(fields: [branchId], references: [id])
+  branchId Int
+  name String
+  price Int 
+  duration Duration //dapat nakadepend to sa servicec name, search solution
+}
+
+model Barber {
+  user Users @relation(fields: [userId], references: [uid])
+  userId Int @unique
+  branch Branch @relation(fields: [branchId], references: [id])
+  branchId Int
+  name String @unique
+  isAvailable Boolean
+  setDates AppointmentDate[]
+}
+
+model AppointmentDate {
+  date DateTime @unique//pinagsama ko na lang yung date pati kung am/pm since DateTime already gets that
+  slotAvailable Boolean
+  barber Barber @relation(fields: [slotAvailable], references: [isAvailable])
+  branch Branch @relation(fields: [selectedBranch], references: [name])
+  selectedBranch String
+}
+
+model AppointmentTime {
+  duration Service @relation(fields:[selectedDuration] ,references: [duration])
+  selectedDuration String
+  date AppointmentDate @relation(fields: [selectedDate], references: [date])
+  selectedDate DateTime @db.Date
+  appointmentStart DateTime @db.Time
+  appointmentEnd DateTime @db.Time
+  id Int @id @default(autoincrement()) //dito ko ginenerate yung appointmentId since kailangan daw na lahat ng model may atleast one @id or @unique and wala ako maisip na malalagay
+}
+
+model AppointmentFinal {
+  pickedService String
+  // serviceName Service @relation(fields: [pickedService], references: [id])
+  servicePrice Service @relation(fields: [price], references: [price])
+  price Int
+  barber Barber @relation(fields: [pickedBarber], references: [name])
+  pickedBarber String
+  date AppointmentDate @relation(fields: [pickedDate], references: [date])
+  pickedDate DateTime @db.Date
+  branch Branch @relation(fields: [pickedBranch], references: [name])
+  pickedBranch String
+  //time
+  id AppointmentTime @relation(fields: [referenceCode], references: [id])
+  referenceCode Int @unique
+}
+
+model Account {
+  id Int @id @default(autoincrement())
+  type AccountType @default(CUSTOMER)
+  //di ko alam kung ano ba dapat tong mga nasa baba 
+  // provider
+  providerAccountId Int
+  refresh_token Int
+  access_token Int
+  expires_at DateTime
+  token_type String
+  // scope
+  id_token Int
+  // session_state
+}
+
+model Users {
+  uid Int @id @default(autoincrement())
+  name String
+  email String
+  emailVerified Boolean
+  image Bytes
+  preferredBarber Barber
+  session Session
+  branch Branch
+  //role ano pinagkaiba ng role sa accounttype
+  //password sketch pala to
+  //accounts
+  //sessions
+}
+
+model Session {
+  id Int @id @default(autoincrement())
+  sessionToken String
+  userid String
+  expires DateTime
+  user Users @relation(fields: [userId], references: [uid])
+  userId Int @unique
+}
+
+model Schedule {
+  datesAvailable DateTime
+}
+
+//enums serve as declared choices
+enum Category {
+  HAIRCUT
+  SHAVE
+}
+
+enum Duration {
+  THIRTYMINS
+  ONEHR //di nagaacept si prisma ng enum that starts with a number
+}
+
+enum AccountType {
+  ADMIN
+  CUSTOMER
+}

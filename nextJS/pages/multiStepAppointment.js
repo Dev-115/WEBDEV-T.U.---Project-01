@@ -23,6 +23,7 @@ const [page, setPage] = React.useState(0);
 const handleBack = () => {
      setPage(page - 1);
 }
+
 const history = useRouter();
 
 const [shopCart, setShopCart] = React.useState({});
@@ -110,25 +111,28 @@ const handleSubmit2 = async (data2) => {
 
         console.log('Page number>>',page);
         console.log('data details>>', shopCart);
-        
+        //add validation here
+        if(!shopCart.serviceCategory != undefined){
+            setPage(page + 1);
+
+        }
 
         if(page == 4){
             history.push("/appointmentConfirm");
         }
-    setPage(page + 1);
 
   }
 
 const conditionalComponent = () => {
     switch (page) {
         case 0:
-            return <AppointmentStep1 childToParent1={childToParent1} />;
+            return <AppointmentStep1 formStep={page} childToParent1={childToParent1} />;
         case 1:
-           return <AppointmentStep2 childToParent2={childToParent2} />;
+           return <AppointmentStep2 formStep={page} childToParent2={childToParent2} />;
         case 2:
-           return <AppointmentStep3 childToParent3={childToParent3}/>;
+           return <AppointmentStep3 formStep={page} childToParent3={childToParent3}/>;
         case 3:
-            return <AppointmentStep4 childToParent4={childToParent4}/>;
+            return <AppointmentStep4 formStep={page} childToParent4={childToParent4}/>;
         case 4:
             return <AppointmentStep5 parentToChild={shopCart}/>;
         // case 5:

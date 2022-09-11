@@ -1,0 +1,3 @@
+-- AlterTable
+ALTER TABLE `user` ADD COLUMN `password` VARCHAR(191) NULL,
+    ADD COLUMN `role` VARCHAR(191) NULL;
