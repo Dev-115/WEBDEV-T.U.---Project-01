@@ -46,6 +46,7 @@ model User {
   password      String?  // New Column
   accounts      Account[]
   sessions      Session[]
+  barber        Barber[]
 }
 
 model VerificationToken {
@@ -65,6 +66,8 @@ model Branch {
   address String
   service Service[]
   barber Barber[]
+  date AppointmentDate[]
+  appointmentDetails AppointmentFinal?
 }
 
 model Service {
@@ -75,53 +78,61 @@ model Service {
   name String
   price Int 
   duration Duration //dapat nakadepend to sa servicec name, search solution
+  time AppointmentTime?
+  appointmentDetails AppointmentFinal?
 }
 
 model Barber {
-  user Users @relation(fields: [userId], references: [uid])
-  userId Int @unique
+  user User @relation(fields: [userId], references: [id])
+  userId String @unique
   branch Branch @relation(fields: [branchId], references: [id])
   branchId Int
   name String @unique
   isAvailable Boolean
   setDates AppointmentDate[]
+  appointmentDetails AppointmentFinal?
+
 }
 
 model AppointmentDate {
   date DateTime @unique//pinagsama ko na lang yung date pati kung am/pm since DateTime already gets that
-  slotAvailable Boolean
-  barber Barber @relation(fields: [slotAvailable], references: [isAvailable])
-  branch Branch @relation(fields: [selectedBranch], references: [name])
-  selectedBranch String
+  selectedBarber String
+  barber Barber @relation(fields: [selectedBarber], references: [name])
+  branch Branch @relation(fields: [selectedBranch], references: [id])
+  selectedBranch Int
+  timeSelected AppointmentTime[]
+  appointmentDetails AppointmentFinal?
+
 }
 
 model AppointmentTime {
-  duration Service @relation(fields:[selectedDuration] ,references: [duration])
-  selectedDuration String
+  duration Service @relation(fields:[selectedDuration], references: [id])
+  selectedDuration Int @unique
   date AppointmentDate @relation(fields: [selectedDate], references: [date])
   selectedDate DateTime @db.Date
   appointmentStart DateTime @db.Time
   appointmentEnd DateTime @db.Time
   id Int @id @default(autoincrement()) //dito ko ginenerate yung appointmentId since kailangan daw na lahat ng model may atleast one @id or @unique and wala ako maisip na malalagay
+  appointmentDetails AppointmentFinal?
 }
 
 model AppointmentFinal {
-  pickedService String
+  pickedService Int @unique
   // serviceName Service @relation(fields: [pickedService], references: [id])
-  servicePrice Service @relation(fields: [price], references: [price])
+  service Service @relation(fields: [pickedService], references: [id])
   price Int
   barber Barber @relation(fields: [pickedBarber], references: [name])
-  pickedBarber String
-  date AppointmentDate @relation(fields: [pickedDate], references: [date])
-  pickedDate DateTime @db.Date
+  pickedBarber String @unique
+  date AppointmentDate? @relation(fields: [pickedDate], references: [date])
+  pickedDate DateTime @unique @db.Date
   branch Branch @relation(fields: [pickedBranch], references: [name])
-  pickedBranch String
+  pickedBranch String @unique
   //time
   id AppointmentTime @relation(fields: [referenceCode], references: [id])
   referenceCode Int @unique
 }
 
-model Account {
+model AccountSaved {
   id Int @id @default(autoincrement())
   type AccountType @default(CUSTOMER)
   //di ko alam kung ano ba dapat tong mga nasa baba 
@@ -136,32 +147,33 @@ model Account {
   // session_state
 }
 
-model Users {
-  uid Int @id @default(autoincrement())
-  name String
-  email String
-  emailVerified Boolean
-  image Bytes
-  preferredBarber Barber
-  session Session
-  branch Branch
-  //role ano pinagkaiba ng role sa accounttype
-  //password sketch pala to
-  //accounts
-  //sessions
-}
+// model SessionSaved {
+//   id Int @id @default(autoincrement())
+//   sessionToken String
+//   userid String
+//   expires DateTime
+//   user User @relation(fields: [userId], references: [id])
+//   userId Int @unique
+// }
 
-model Session {
-  id Int @id @default(autoincrement())
-  sessionToken String
-  userid String
-  expires DateTime
-  user Users @relation(fields: [userId], references: [uid])
-  userId Int @unique
-}
+// model Users {
+//   uid Int @id @default(autoincrement())
+//   name String
+//   email String
+//   emailVerified Boolean
+//   image Bytes
+//   preferredBarber Barber
+//   session SessionSaved
+//   branch Branch
+//   //role ano pinagkaiba ng role sa accounttype
+//   //password sketch pala to
+//   accounts AccountSaved
+//   //sessions
+// }
+
 
 model Schedule {
-  datesAvailable DateTime
+  datesAvailable DateTime @unique
 }
 
 //enums serve as declared choices
