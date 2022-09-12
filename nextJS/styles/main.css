@@ -340,51 +340,63 @@ a:active {
   color: #313131;
 }
 
+/* ===== Scrollbar CSS ===== */
+/* Chrome, Edge, and Safari */
+*::-webkit-scrollbar {
+  overflow: overlay;
+  display: none;
+}
+
+/* Firefox */
 /**
  * Basic typography style for copy text
  */
 .main_nav {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: center;
-  align-content: center;
-  flex-wrap: nowrap;
-  padding: 0px;
-  gap: 10px;
+  background: #F2F3F3;
   position: absolute;
   width: 100vw;
   height: 56px;
   left: 0px;
   top: 0px;
-  background: #F2F3F3;
 }
-.main_nav .nav_item {
+.main_nav .nav_box {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  flex-wrap: nowrap;
+  padding: 0px;
+  gap: 10px;
+  max-width: 1600px;
+  margin: 0 auto;
+}
+.main_nav .nav_box .nav_item {
   flex: none;
   order: 1;
   flex-grow: 0;
   z-index: 1;
   padding: 10px;
 }
-.main_nav .nav_item:first-child, .main_nav .nav_item:nth-child(2), .main_nav .nav_item:last-child {
+.main_nav .nav_box .nav_item:first-child, .main_nav .nav_box .nav_item:nth-child(2), .main_nav .nav_box .nav_item:last-child {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  align-items: center;
   justify-content: center;
+  align-items: center;
   align-content: center;
   flex: 0 0 25%;
   gap: 10px;
 }
-.main_nav .nav_item:nth-child(2) {
+.main_nav .nav_box .nav_item:nth-child(2) {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   flex: 0 0 50%;
   gap: 50px;
 }
-.main_nav .nav_item:last-child {
+.main_nav .nav_box .nav_item:last-child {
   justify-content: flex-start;
 }
 
@@ -395,16 +407,16 @@ a:active {
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
-  align-items: center;
   justify-content: center;
+  align-items: center;
   align-content: center;
 }
 .main_footer .flex_box {
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
-  align-items: center;
   justify-content: center;
+  align-items: center;
   align-content: center;
   gap: 10px;
 }
@@ -483,8 +495,8 @@ a:active {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  align-items: center;
   justify-content: center;
+  align-items: center;
   align-content: center;
   background: linear-gradient(180deg, rgba(0, 0, 0, 0.88) 11.6%, rgba(0, 0, 0, 0.458333) 65.01%, rgba(0, 0, 0, 0) 100%), url("../public/images/herobg01.jpg");
   background-position: center;
@@ -502,8 +514,8 @@ a:active {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  align-items: center;
   justify-content: center;
+  align-items: center;
   align-content: center;
 }
 .section_hero .flex_box .flex_item h1 {
@@ -538,8 +550,8 @@ a:active {
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
-  align-items: center;
   justify-content: center;
+  align-items: center;
   align-content: center;
   background: #F2F3F3;
   height: 100%;
@@ -549,8 +561,8 @@ a:active {
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
-  align-items: center;
   justify-content: center;
+  align-items: center;
   align-content: center;
   gap: 40px;
 }
@@ -558,8 +570,8 @@ a:active {
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
-  align-items: center;
   justify-content: center;
+  align-items: center;
   align-content: center;
 }
 .section_services .flex_box .flex_item h2 {
@@ -681,8 +693,8 @@ a:active {
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
-  align-items: center;
   justify-content: center;
+  align-items: center;
   align-content: center;
   padding: 50px 0px;
   background: #C9CBCF;
@@ -691,8 +703,8 @@ a:active {
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
-  align-items: center;
   justify-content: center;
+  align-items: center;
   align-content: center;
   gap: 24px;
 }
@@ -700,8 +712,8 @@ a:active {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  align-items: center;
   justify-content: center;
+  align-items: center;
   align-content: center;
   gap: 20px;
 }
@@ -752,8 +764,8 @@ a:active {
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
-  align-items: center;
   justify-content: center;
+  align-items: center;
   align-content: center;
   padding: 10px 30px;
   width: 100%;
@@ -796,8 +808,8 @@ a:active {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  align-items: center;
   justify-content: center;
+  align-items: center;
   align-content: center;
   gap: 20px;
 }
@@ -805,8 +817,8 @@ a:active {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  align-items: center;
   justify-content: center;
+  align-items: center;
   align-content: center;
   gap: 10px;
 }
@@ -852,8 +864,8 @@ a:active {
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
-  align-items: center;
   justify-content: center;
+  align-items: center;
   align-content: center;
   padding: 10px 30px;
   width: 100%;
@@ -877,8 +889,8 @@ a:active {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  align-items: center;
   justify-content: center;
+  align-items: center;
   align-content: center;
   flex-wrap: nowrap;
 }
@@ -915,4 +927,175 @@ a:active {
   width: 100%;
   height: 35px;
   border-radius: 20px;
+}
+
+.section_appointment {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  background: #2c3e50;
+}
+.section_appointment h1 {
+  align-self: flex-start;
+  margin: 24px 0px;
+  font-weight: 400;
+  font-size: 48px;
+  line-height: 60px;
+}
+.section_appointment .flex_box {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  box-shadow: 2px 2px 5px 5px rgba(102, 102, 102, 0.144);
+  border-radius: 25px;
+  background: #F7F8F8;
+  flex-wrap: nowrap;
+  width: 815px;
+  height: 600px;
+  padding: 24px;
+  border-radius: 0;
+}
+.section_appointment .flex_box .flex_item {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  flex-wrap: nowrap;
+  flex: 0 0 90%;
+}
+.section_appointment .flex_box .flex_item:last-child {
+  flex: 0 0 10%;
+  flex-direction: row-reverse;
+  align-self: flex-end;
+  gap: 10px;
+}
+.section_appointment .flex_box .flex_item .btn_primary {
+  font-size: 16px;
+}
+.section_appointment .flex_box .flex_item .flex_subitem {
+  width: 100%;
+  flex: 0 0 15%;
+}
+.section_appointment .flex_box .flex_item .flex_subitem:last-child {
+  flex: 0 0 85%;
+}
+.section_appointment .flex_box .flex_item .flex_subitem h1 {
+  font-weight: 400;
+  font-size: 36px;
+  line-height: 45px;
+  margin: 0;
+  margin-bottom: 24px;
+}
+.section_appointment .flex_box .flex_item .flex_subitem .flex_nested_title {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  flex-wrap: nowrap;
+  margin-bottom: 24px;
+}
+.section_appointment .flex_box .flex_item .flex_subitem .flex_nested_title .flex_nested_title_item {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+.section_appointment .flex_box .flex_item .flex_subitem .flex_nested_title .flex_nested_title_item:first-child {
+  flex: 0 0 80%;
+}
+.section_appointment .flex_box .flex_item .flex_subitem .flex_nested_title .flex_nested_title_item:last-child {
+  flex: 0 0 20%;
+  justify-content: flex-end;
+}
+.section_appointment .flex_box .flex_item .flex_subitem .flex_nested_title .flex_nested_title_item:last-child .mantine-Chip-label {
+  width: 100%;
+  height: 100%;
+  padding: 12px 16px;
+}
+.section_appointment .flex_box .flex_item .flex_subitem .flex_nested_title .flex_nested_title_item:last-child .mantine-Chip-label:hover {
+  color: #dadada;
+  background: #161d22;
+  border: 1px solid #161d22;
+}
+.section_appointment .flex_box .flex_item .flex_subitem .flex_nested_title .flex_nested_title_item:last-child .mantine-Chip-label:focus {
+  color: #dadada;
+  background: #0b0f11;
+  border: 1px solid #0b0f11;
+}
+.section_appointment .flex_box .flex_item .flex_subitem .flex_nested_title .flex_nested_title_item:last-child .mantine-Chip-iconWrapper {
+  display: none;
+}
+.section_appointment .flex_box .flex_item .flex_subitem .flex_nested_title .flex_nested_title_item h1 {
+  margin: 0;
+}
+.section_appointment .flex_box .flex_item .flex_subitem .flex_nested_box {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  flex-wrap: nowrap;
+  gap: 8px;
+}
+.section_appointment .flex_box .flex_item .flex_subitem .flex_nested_box .flex_nested_item {
+  flex-direction: column;
+  justify-content: flex-start;
+  width: 35%;
+}
+.section_appointment .flex_box .flex_item .flex_subitem .flex_nested_box .flex_nested_item:last-child {
+  width: 65%;
+}
+.section_appointment .flex_box .flex_item .flex_subitem .flex_nested_box .flex_nested_item .flex_nested_subitem {
+  width: 100%;
+  height: 50px;
+}
+.section_appointment .flex_box .flex_item .flex_subitem .flex_nested_box .flex_nested_item .flex_nested_subitem .mantine-Chip-label {
+  width: 100%;
+  height: 100%;
+  padding: 12px 16px;
+  border-radius: 0px;
+}
+.section_appointment .flex_box .flex_item .flex_subitem .flex_summary_box {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  gap: 38px;
+  width: 100%;
+  height: 100%;
+}
+.section_appointment .flex_box .flex_item .flex_subitem .flex_summary_box h1 {
+  align-self: flex-start;
+}
+.section_appointment .flex_box .flex_item .flex_subitem .flex_summary_box h2 {
+  font-size: 24px;
+}
+.section_appointment .flex_box .flex_item .flex_subitem .flex_summary_box .flex_summary_item {
+  align-self: flex-start;
+}
+.section_appointment .flex_box .flex_item .flex_subitem .flex_summary_box .flex_summary_item:last-child {
+  width: 42.5%;
+}
+.section_appointment .flex_box .flex_item .flex_subitem .flex_summary_box .mantine-Chip-checkIcon {
+  color: #F7F8F8;
+}
+.section_appointment .flex_box .flex_item .flex_subitem .flex_summary_box .mantine-Chip-label {
+  width: 100%;
+  height: 100%;
+  padding: 12px 16px;
+  border-radius: 0px;
+  background-color: #069CBD;
+  border-color: #069CBD;
+  color: #F7F8F8;
+}
+.section_appointment .flex_box .flex_item .flex_subitem .flex_summary_box p:last-child {
+  font-weight: 800;
 }/*# sourceMappingURL=main.css.map */

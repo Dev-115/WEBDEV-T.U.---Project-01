@@ -19,33 +19,35 @@ export default function NavComponent() {
   //     <LoginBtn></LoginBtn></>
   //   )
   // }
-    return (
-      <>
-        <nav className="main_nav">
-        <div className="nav_item">
+  return (
+    <>
+      <nav className="main_nav">
+        <div className='nav_box'>
+          <div className="nav_item">
             <div>
-                Barbershop/Salon
+              Barbershop/Salon
             </div>
-        </div>
-        <div className="nav_item">
-        <Link href="/">Home</Link>
-        <Link href="/services">Services</Link>
-        <Link href="/About">About Us</Link>
-        {/*  */}
-         {/* <LoginBtn>hello</LoginBtn>
-            <Link href="/register2"><button class="btn_primary">Register</button></Link> */}
-            {status === "unauthenticated" ?  <><Link href="/link1">Link 1</Link>
-      </>:  <Link href="/multiStepAppointment">Book Appointment</Link>}
-        <Link href="/Contact">Contact</Link>
-        </div>
-        <div className="nav_item">
+          </div>
+          <div className="nav_item">
+            <Link href="/">Home</Link>
+            <Link href="/services">Services</Link>
+            <Link href="/About">About Us</Link>
+            {/*  */}
             {/* <LoginBtn>hello</LoginBtn>
             <Link href="/register2"><button class="btn_primary">Register</button></Link> */}
-            {status === "unauthenticated" ?  <><LoginBtn></LoginBtn><Link href="/register2"><button className="btn_primary">Register</button></Link>
-      </>:  <LoginBtn>hello</LoginBtn>}
-            
+            {status === "unauthenticated" ? <><Link href="/link1">Link 1</Link>
+            </> : <Link href="/multiStepAppointment">Book Appointment</Link>}
+            <Link href="/Contact">Contact</Link>
+          </div>
+          <div className="nav_item">
+            {/* <LoginBtn>hello</LoginBtn>
+            <Link href="/register2"><button class="btn_primary">Register</button></Link> */}
+            {status === "unauthenticated" ? <><LoginBtn></LoginBtn><Link href="/register2"><button className="btn_primary">Register</button></Link>
+            </> : <LoginBtn>hello</LoginBtn>}
+
+          </div>
         </div>
-        </nav>
-      </>
-    );
+      </nav>
+    </>
+  );
 }

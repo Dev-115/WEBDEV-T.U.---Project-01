@@ -25,7 +25,7 @@ input {
 
 a {
     color: #000000;
-    
+
     &:focus,
     &:hover {
         color: #575757;
@@ -35,3 +35,26 @@ a {
         color: #313131;
     }
 }
+
+/* ===== Scrollbar CSS ===== */
+/* Chrome, Edge, and Safari */
+*::-webkit-scrollbar {
+    overflow: overlay;
+    display: none
+}
+
+/* Firefox */
+// * {
+//     scrollbar-width: 0;
+//     scrollbar-color: #545454 #ffffff;
+// }
+
+// *::-webkit-scrollbar-track {
+//     background: #ffffff;
+// }
+
+// *::-webkit-scrollbar-thumb {
+//     background-color: #545454;
+//     border-radius: 10px;
+//     border: 3px solid #ffffff;
+// }
