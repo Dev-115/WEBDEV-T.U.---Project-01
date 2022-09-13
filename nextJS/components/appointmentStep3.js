@@ -31,13 +31,16 @@ function appointmentStep3({formStep, childToParent3}) {
         childToParent3({dateAppoint:e, ampm:dNT});
 
     }
+    //excludeDate to exclude dates displayed study how to exclude certatin dates date.getTime() === new Date('2022-09-30T00:00').getTime() || date.getTime() === new Date('2022-09-13T00:00').getTime()
+    
   return (
     <>
     <Title>Let's set that date of ours</Title>
     <Switch
             label= "AM / PM"
-            onChange ={(e) => picDNT(e)}/>  
-    <DatePicker placeholder="Pick date" label="Event date" withAsterisk 
+            onChange ={(e) => picDNT(e)}
+            />  
+    <DatePicker placeholder="Pick date" label="Event date" withAsterisk amountOfMonths={3} excludeDate={(date) => date.getTime() === new Date('2022-09-30T00:00').getTime() || date.getTime() === new Date('2022-09-13T00:00').getTime()}
     onChange={ (e) => datepick(e) }/>
     </>
   )

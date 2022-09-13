@@ -77,7 +77,7 @@ export default NextAuth({
     
           // If no error and we have user data, return it
           if (res.ok && user) {
-            var bytes  = CryptoJS.AES.decrypt(user.Password, 'TeamMAGG');
+            var bytes  = CryptoJS.AES.decrypt(user.password, 'TeamMAGG');
             var passwordText = bytes.toString(CryptoJS.enc.Utf8);
             if(passwordText == credentials.password){
               return user
