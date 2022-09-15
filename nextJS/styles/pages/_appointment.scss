@@ -1,0 +1,206 @@
+.section_appointment {
+    @include default_vwh();
+    @include flex_prop2();
+    @include flex_center();
+    background: #2c3e50;
+
+    // Ask Bert about the placement of the box =======
+    // @include flex_leftcenter();
+    // align-content: flex-start;
+    // padding: 120px 8%;
+
+    h1 {
+        align-self: flex-start;
+        margin: 24px 0px;
+        font-weight: 400;
+        font-size: 48px;
+        line-height: 60px;
+    }
+
+    // Main Flexbox of the Page
+    .flex_box {
+        @include flex_prop2();
+        @include flex_center();
+        @include box_style();
+        @include border_default();
+        background: #F7F8F8;
+        flex-wrap: nowrap;
+        width: 815px;
+        height: 600px;
+        padding: 24px;
+        border-radius: 0;
+
+        .flex_item {
+            @include flex_prop2();
+            @include flex_center();
+            flex-wrap: nowrap;
+
+            // Progress Bar & Step Contents
+            flex: 0 0 90%;
+
+            // Buttons for Back / Next / Submit
+            &:last-child {
+                flex: 0 0 10%;
+                flex-direction: row-reverse;
+                align-self: flex-end;
+                gap: 10px;
+            }
+
+            .btn_primary {
+                font-size: 16px;
+            }
+
+            .flex_subitem {
+                width: 100%;
+                // Flex Percentage for Progress Bar
+                flex: 0 0 15%;
+
+                // Flex Percentage for Steps Contents
+                &:last-child {
+                    flex: 0 0 85%
+                }
+
+                h1 {
+                    font-weight: 400;
+                    font-size: 36px;
+                    line-height: 45px;
+                    margin: 0;
+                    margin-bottom: 24px;
+                }
+
+                .flex_nested_title {
+                    // Title with Switch on the Side
+                    @include flex_prop1();
+                    @include flex_center();
+                    flex-wrap: nowrap;
+                    margin-bottom: 24px;
+
+                    .flex_nested_title_item {
+                        @include flex_prop1();
+
+                        &:first-child {
+                            flex: 0 0 80%;
+                        }
+
+                        &:last-child {
+                            flex: 0 0 20%;
+                            justify-content: flex-end;
+
+                            .mantine-Chip-label {
+                                // Manipulating Chip Pre-defined CSS
+                                width: 100%;
+                                height: 100%;
+                                padding: 12px 16px;
+
+                                &:hover {
+                                    @include btn01_hover();
+                                }
+
+                                // When Selected Background Should Change
+                                &:focus {
+                                    @include btn01_active();
+                                }
+                            }
+
+                            .mantine-Chip-iconWrapper {
+                                // Remove Check Icon on Chip
+                                display: none;
+                            }
+                        }
+
+                        h1 {
+                            margin: 0;
+                        }
+                    }
+                }
+
+                .flex_nested_box {
+                    @include flex_prop1();
+                    flex-wrap: nowrap;
+                    gap: 8px;
+
+                    .flex_nested_item {
+                        // Over Wrtie Chip.Group CSS Code
+                        flex-direction: column;
+                        justify-content: flex-start;
+                        width: 35%;
+
+                        &:last-child {
+                            width: 65%;
+                        }
+
+                        .flex_nested_subitem {
+                            width: 100%;
+                            height: 50px;
+                            // Selectors - Style Mantine API
+                            // mantine-Chip-root
+                            // mantine-Chip-label
+                            // mantine-Chip-input
+                            // mantine-Chip-iconWrapper
+                            // mantine-Chip-checkIcon
+
+
+                            .mantine-Chip-label {
+                                // Manipulating Chip Pre-defined CSS
+                                width: 100%;
+                                height: 100%;
+                                padding: 12px 16px;
+                                border-radius: 0px;
+
+                                // Change Border Styles in the Future
+                                // @include input_style();
+                                // @include input_border_clear();
+                                // @include input_border();
+                                // @include border_style02();
+                                // ==================================
+                            }
+                        }
+                    }
+                }
+
+                // 5th Step Style & Containers
+                .flex_summary_box {
+                    @include flex_prop2();
+                    gap: 38px;
+                    width: 100%;
+                    height: 100%;
+
+                    h1 {
+                        align-self: flex-start;
+                    }
+
+                    h2 {
+                        font-size: 24px;
+                    }
+
+                    .flex_summary_item {
+                        align-self: flex-start;
+
+                        &:last-child {
+                            width: 42.5%;
+                        }
+                    }
+                    //Change
+                    .mantine-Chip-checkIcon {
+                        color: #F7F8F8;
+                    }
+
+                    .mantine-Chip-label {
+                        // Manipulating Chip Pre-defined CSS
+                        width: 100%;
+                        height: 100%;
+                        padding: 12px 16px;
+                        border-radius: 0px;
+                        background-color: #069CBD;
+                        border-color: #069CBD;
+                        color: #F7F8F8;
+                    }
+
+                    p:last-child {
+                        font-weight: 800;
+                    }
+                }
+            }
+        }
+    }
+}

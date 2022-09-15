@@ -21,19 +21,24 @@
 
 // Flex Config ------------------------------
 
+@mixin flex_prop0 {
+    display: flex;
+    flex-wrap: wrap;
+}
+
 @mixin flex_prop1 {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
 }
 
-@mixin flex-row-between {
+@mixin flex_row_between {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
 }
 
-@mixin flex-col-between {
+@mixin flex_col_between {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -46,20 +51,26 @@
 }
 
 @mixin flex_center {
-    align-items: center;
     justify-content: center;
+    align-items: center;
     align-content: center;
 }
 
 @mixin flex_rightcenter {
-    align-items: flex-end;
     justify-content: center;
+    align-items: flex-end;
+    align-content: center;
+}
+
+@mixin flex_leftcenter {
+    justify-content: flex-start;
+    align-items: flex-start;
     align-content: center;
 }
 
 @mixin flex_spaceeven {
-    align-items: center;
     justify-content: space-evenly;
+    align-items: center;
     align-content: center;
 }
 
@@ -132,7 +143,17 @@
     border-bottom: 2px solid $color1;
 }
 
+// Box --------------------------------------
+
+@mixin box_style {
+    box-shadow: 2px 2px 5px 5px rgba(102, 102, 102, 0.144);
+}
+
 // Border Radius ----------------------------
+
+@mixin border_default {
+    border-radius: 25px;
+}
 
 @mixin border_style01 {
     border-top-left-radius: 20px;
@@ -154,19 +175,21 @@
 
 // Images
 @mixin img_ {
-    
     background-position: center;
     background-repeat: no-repeat;
 }
 
 @mixin img_default {
     @include img_();
-    background-size: 100% auto;
+    background-size: 100% 100%;
+
     @media (min-width: 1200px) {
         background-size: auto 100%;
     }
+
     object-fit: cover;
 }
+
 @mixin img_hero {
     @include img_();
     background-size: 100% 100%;
