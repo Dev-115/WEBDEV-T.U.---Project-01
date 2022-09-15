@@ -6,7 +6,6 @@
     @include default_vwh();
     @include flex_prop1();
     @include flex_center();
-
     background: linear-gradient(180deg, rgba(0, 0, 0, 0.88) 11.6%, rgba(0, 0, 0, 0.458333) 65.01%, rgba(0, 0, 0, 0) 100%), url($herobg01);
     @include img_default();
 
@@ -63,6 +62,7 @@
     .flex_box {
         @include flex_prop2();
         @include flex_center();
+        max-width: 1600px;
         gap: 40px;
 
         .flex_item {
@@ -224,6 +224,7 @@
     .flex_box {
         @include flex_prop2();
         @include flex_center();
+        max-width: 1600px;
         gap: 24px;
 
         .flex_item {

@@ -21,48 +21,48 @@ export default function LoginPagePost({ providers, csrfToken }) {
     <>
       <HeaderComponent>Login</HeaderComponent>
       <NavComponent />
-
-      <div className="login_modal">
-        <div className="login_box"></div>
-        <div className="login_box">
-          <div className="login_continer">
-            <TennorGif />
-            <h1>Barbershop</h1>
-          </div>
-          <form className="login_container" method="post" action="/api/auth/callback/credentials">
-            <input name="csrfToken" type="hidden" defaultValue={csrfToken} />
-
-            <div className="login_item">
-              <input placeholder="email" name="username" id="username" type="text" />
+      <div className="section_login">
+        <div className="login_modal">
+          <div className="login_box"></div>
+          <div className="login_box">
+            <div className="login_continer">
+              {/* <TennorGif /> */}
+              <h1>Barbershop</h1>
             </div>
-            <div className="login_item">
-              <input placeholder="Password" name="password" id="password" type="password" />
-            </div>
-            <div className="login_item">
-            </div>
-            <div className="login_item">
-
-              <button type="submit">Sign in</button>
-
-            </div>
-          </form>
-          <div className="login_item">
-            <Link href="/register2"><button className="btn_secondary" type="button">REGISTER</button></Link>
-          </div>
-          <div className="login_container">
-            <div className="login_item">
-              <span className="login_span">or</span>
-            </div>
-            <div className="login_item">
-              {/* {Object.values(providers).slice(1).map((provider) => (
+            <form className="login_container" method="post" action="/api/auth/callback/credentials">
+              <div className="login_item">
+                <input name="csrfToken" type="hidden" defaultValue={csrfToken} />
+              </div>
+              <div className="login_item">
+                <input placeholder="email" name="username" id="username" type="text" />
+              </div>
+              <div className="login_item">
+                <input placeholder="Password" name="password" id="password" type="password" />
+              </div>
+              <div className="login_item">
+              </div>
+              <div className="login_item">
+                <button className="btn_primary" type="submit">Sign in</button>
+              </div>
+              <div className="login_item">
+                <Link href="/register2"><button type="button" className="btn_secondary">REGISTER</button></Link>
+              </div>
+            </form>
+            <div className="login_container">
+              <div className="login_item">
+                <span className="login_span">or</span>
+              </div>
+              <div className="login_item">
+                {/* {Object.values(providers).slice(1).map((provider) => (
                         <div key={provider.name}>
                         <button class="btn-ecl" onClick={() => signIn(provider.id)}><i class="bi bi-google"></i></button>
                         </div>
                     ))} 
                                     console.log(providers) */}
-              <button className="btn-ecl" onClick={() => signIn('google', { callbackUrl: 'http://localhost:3000/multiStepAppointment' })}><i className="bi bi-google"></i></button>
-              <button className="btn-ecl"><i className="bi bi-twitter"></i>not working</button>
-              <button className="btn-ecl"><i className="bi bi-facebook"></i>not working</button>
+                <button className="btn-ecl" onClick={() => signIn('google', { callbackUrl: 'http://localhost:3000/multiStepAppointment' })}><i className="bi bi-google"></i></button>
+                <button className="btn-ecl"><i className="bi bi-twitter"></i></button>
+                <button className="btn-ecl"><i className="bi bi-facebook"></i></button>
+              </div>
             </div>
           </div>
         </div>

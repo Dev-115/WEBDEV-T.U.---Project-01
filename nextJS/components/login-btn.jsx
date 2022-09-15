@@ -12,7 +12,7 @@ export default function Component() {
   }
   return (
     <>
-      <button onClick={() => signIn()}>Login</button>
+      <button className="btn_clearfix" onClick={() => signIn()}>Login</button>
     </>
   )
 }

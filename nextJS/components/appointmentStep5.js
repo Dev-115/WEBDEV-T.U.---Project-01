@@ -11,7 +11,7 @@ function appointmentStep5({ parentToChild }) {
                 <h1>Does this sound right?</h1>
                 <div className='flex_summary_item'>
                     <p>Appointment for jeremy de guszman</p>
-                    <Chip value="1">{parentToChild.serviceSelection} P 500.00</Chip>
+                    <p>{parentToChild.serviceSelection} P 500.00</p>
                     <p>Your barber is {parentToChild.staffBarber}</p>
                     <p>at address of shop on {parentToChild.timeAppoint}</p>
                     <p>at {datashort}</p>

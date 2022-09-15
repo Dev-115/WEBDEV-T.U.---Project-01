@@ -25,7 +25,7 @@ export default function Index2Page() {
     employment_status: null
   });
 
-  const [page, setPage] = React.useState(0);
+  const [page, setPage] = React.useState(5);
   const handleBack = () => {
     history.push("/multiStepAppointment")
   }
