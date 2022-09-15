@@ -20,7 +20,7 @@ const useStyles = createStyles((theme, _params, getRef) => ({
       ref: getRef('iconWrapper'),
     },
   }));
-export default function appointmentStep1({formStep, childToParent1}) {
+export default function appointmentStep1({updateRefCode, childToParent1}) {
     const { classes } = useStyles();
     const [chip1State, setChip1State] = React.useState("");
 
@@ -34,8 +34,6 @@ export default function appointmentStep1({formStep, childToParent1}) {
         console.log(step1a, '<<setp1int');
         console.log(step1b, '<<setp1int');
     })
-
-    console.log('this is form step', formStep)
 
 
 
@@ -79,8 +77,6 @@ export default function appointmentStep1({formStep, childToParent1}) {
       });
 
     }
-
-
 
 
     return (

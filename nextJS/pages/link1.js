@@ -4,9 +4,7 @@ import Link from 'next/link';
 
 export default function link1() {
 
-    let updatedValue = {
-        serviceCategory:'hair cut', serviceSelection:'shave n cutt',staffBarber:"samuel",dateAppointment:'Thu Sep 08 2022 00:00:00 GMT+0800 (China Standard Time)', dateDNT:"AM",timeAppoint:'6:00-7:00PM',
-    }
+
     return (
         <>
                 <HeaderComponent>LINK1</HeaderComponent>

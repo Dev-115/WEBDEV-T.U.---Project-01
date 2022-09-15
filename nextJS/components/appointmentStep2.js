@@ -8,7 +8,7 @@ const boxStyle = {
     padding: '1rem 0',
   };
 
-  export default function appointmentStep2({formStep, childToParent2}) {
+  export default function appointmentStep2({updateRefCode, childToParent2}) {
     // const [active, setActive] = React.useState(2);
     // const nextStep = () => setActive((current) => (current < 5 ? current + 1 : current));
     // const prevStep = () => setActive((current) => (current > 0 ? current - 1 : current));
@@ -20,7 +20,6 @@ const boxStyle = {
         // console.log(e);
 
     }
-    console.log('this is form step', formStep)
 
     return (
       <Box

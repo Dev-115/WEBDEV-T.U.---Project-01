@@ -4,7 +4,7 @@ import React from "react";
 
 
 
-function appointmentStep3({formStep, childToParent3}) {
+function appointmentStep3({updateRefCode, childToParent3}) {
 
     const [dNT, setDNT] = React.useState("AM");
 
