@@ -144,47 +144,38 @@ export default function multiStepPage() {
 
     const handleAppointmentReg = async (ee) => {
 
-        // console.log('Page number>>',page);
-        // console.log('data details>>', shopCart);
+        if (updateReference !== undefined) {
+            console.log("updatePath", updateReference);
 
-        // setPage(page + 1);
+            var data = {
+                "sql": "UPDATE `appointmentfinal` SET `pickedService` = ?, `price` = ?, `pickedBarber` = ?, `pickedDate` = ?, `pickedTime` = ?, `pickedBranch` = ? WHERE `appointmentfinal`.`referenceCode` = ? ;",
+                "referenceCode": updateReference,
+                "pickedService": shopCart.serviceSelection,
+                "price": 500,
+                "pickedBarber": shopCart.staffBarber,
+                "pickedDate": shopCart.dateAppointment,
+                "pickedTime": shopCart.timeAppoint,
+                "pickedBranch": 1,
+            };
 
-        // if(page == 4){
-        //     history.push("/appointmentConfirm");
-        // }
+        } else {
 
-        // if (updateReference != undefined) {
+            var uniq = 'ap' + (new Date()).getTime() + Math.random().toString(16).slice(2);
+            console.log("insertPAth", updateReference);
 
-        //     var uniq = 'ap' + (new Date()).getTime() + Math.random().toString(16).slice(2);
-        //     var data = {
-        //         "sql": "UPDATE `appointmentfinal` `pickedService` = ?, `price` = ?, `pickedBarber` = ?, `pickedDate` = ?, `pickedTime` = ?, `pickedBranch` = 1,  WHERE `appointmentfinal`.`referenceCode` = ?;",
-        //         "referenceCode": uniq,
-        //         "pickedService": shopCart.serviceSelection,
-        //         "price": 500,
-        //         "pickedBarber": shopCart.staffBarber,
-        //         "pickedDate": shopCart.dateAppointment,
-        //         "pickedTime": shopCart.timeAppoint,
-        //         "pickedBranch": 1,
-        //     };
 
-        // } else {
+            var data = {
+                "sql": "INSERT INTO `appointmentfinal` (`pickedService`, `price`, `pickedBarber`, `pickedDate`, `pickedTime`, `pickedBranch`, `referenceCode`) VALUES (?, ?, ?, ?, ?, ?, ?);",
+                "referenceCode": uniq,
+                "pickedService": shopCart.serviceSelection,
+                "price": 500,
+                "pickedBarber": shopCart.staffBarber,
+                "pickedDate": shopCart.dateAppointment,
+                "pickedTime": shopCart.timeAppoint,
+                "pickedBranch": 1,
+            };
+        }
 
-        var uniq = 'ap' + (new Date()).getTime() + Math.random().toString(16).slice(2);
-
-        var data = {
-            "sql": "INSERT INTO `appointmentfinal` (`pickedService`, `price`, `pickedBarber`, `pickedDate`, `pickedTime`, `pickedBranch`, `referenceCode`) VALUES (?, ?, ?, ?, ?, ?, ?);",
-            "referenceCode": uniq,
-            "pickedService": shopCart.serviceSelection,
-            "price": 500,
-            "pickedBarber": shopCart.staffBarber,
-            "pickedDate": shopCart.dateAppointment,
-            "pickedTime": shopCart.timeAppoint,
-            "pickedBranch": 1,
-        };
-
-        // }
-
-        // Send the data to the server in JSON format.
         const JSONdata = JSON.stringify(data)
 
         // API endpoint where we send form data.
@@ -201,9 +192,6 @@ export default function multiStepPage() {
             // Body of the request is the JSON data we created above.
             body: JSONdata,
         }
-        console.log(shopCart.serviceSelection);
-
-
         const response = await fetch(endpoint, options);
 
 
@@ -213,6 +201,9 @@ export default function multiStepPage() {
         if (result == "Appointment has been registred") {
             history.push("/appointmentConfirm");
         }
+        // const mymessage = JSON.stringify(result);
+
+        // alert(mymessage);
     }
 
     const conditionalComponent = () => {

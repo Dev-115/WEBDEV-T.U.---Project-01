@@ -46,7 +46,6 @@ model User {
   password      String?  // New Column
   accounts      Account[]
   sessions      Session[]
-  barber        Barber[]
 }
 
 model VerificationToken {
@@ -61,133 +60,91 @@ model VerificationToken {
 
 
 model Branch {
-  id Int @id @default(autoincrement())
-  name String @unique
+  branchID Int @id @default(autoincrement())
+  name String
   address String
   service Service[]
-  barber Barber[]
-  date AppointmentDate[]
-  appointmentDetails AppointmentFinal?
+  barber BarberList[]
+  serviceCategory ServiceCategory[]
+  finalAppointment FinalAppointment[]
 }
 
 model Service {
-  id Int @id @default(autoincrement())
-  category Category
-  branch Branch @relation(fields: [branchId], references: [id])
-  branchId Int
-  name String
-  price Int 
-  duration Duration //dapat nakadepend to sa servicec name, search solution
-  time AppointmentTime?
-  appointmentDetails AppointmentFinal?
+  serviceID Int @id @default(autoincrement())
+  categoryFK ServiceCategory @relation(fields: [FK_categoryId], references: [categoryID])
+  FK_categoryId Int
+  branchFK Branch @relation(fields: [FK_branchId], references: [branchID])
+  FK_branchId Int
+  serviceName String
+  servicePrice Int 
+  serviceDuration Int //1 means 30 mins, 2 means 1hr, 3 means 1:30, ....
+  finalAppointment FinalAppointment[]
 }
 
-model Barber {
-  user User @relation(fields: [userId], references: [id])
-  userId String @unique
-  branch Branch @relation(fields: [branchId], references: [id])
-  branchId Int
-  name String @unique
+model ServiceCategory {
+  categoryID Int @id @default(autoincrement())
+  service Service[]
+  categoryName String
+  branchFK Branch @relation(fields: [FK_branchId], references: [branchID])
+  FK_branchId Int
+}
+
+model BarberList {
+  barberID Int @id @default(autoincrement())
+  branchFK Branch @relation(fields: [FK_branchId], references: [branchID])
+  FK_branchId Int
+  barberName String
+  dayOff DayOff[]
+  schedules Schedules[]
+  datetAppointment DateAppointment[]
+  finalAppointment FinalAppointment[]
+}
+
+model DayOff {
+  workdayID Int @id @default(autoincrement())
+  day DateTime @db.Date() //dayoff
   isAvailable Boolean
-  setDates AppointmentDate[]
-  appointmentDetails AppointmentFinal?
-
+  barberListFK BarberList @relation(fields: [FK_barberListId], references: [barberID])
+  FK_barberListId Int
 }
 
-model AppointmentDate {
-  date DateTime @unique//pinagsama ko na lang yung date pati kung am/pm since DateTime already gets that
-  selectedBarber String
-  barber Barber @relation(fields: [selectedBarber], references: [name])
-  branch Branch @relation(fields: [selectedBranch], references: [id])
-  selectedBranch Int
-  timeSelected AppointmentTime[]
-  appointmentDetails AppointmentFinal?
-
+model Schedules {
+  scheduleID Int @id @default(autoincrement())
+  barberFK BarberList @relation(fields: [FK_barberId], references: [barberID])
+  FK_barberId Int
+  time DateTime @db.Time()
+  AmPm Boolean
 }
 
-model AppointmentTime {
-  duration Service @relation(fields:[selectedDuration], references: [id])
-  selectedDuration Int @unique
-  date AppointmentDate @relation(fields: [selectedDate], references: [date])
-  selectedDate DateTime @db.Date
-  appointmentStart DateTime @db.Time
-  appointmentEnd DateTime @db.Time
-  id Int @id @default(autoincrement()) //dito ko ginenerate yung appointmentId since kailangan daw na lahat ng model may atleast one @id or @unique and wala ako maisip na malalagay
-  appointmentDetails AppointmentFinal?
+model DateAppointment {
+  dateID Int @id @default(autoincrement())
+  barberFK BarberList @relation(fields: [FK_barberId], references: [barberID])
+  FK_barberId Int
+  date DateTime  @db.Date()
+  isAvailable Boolean
+  timeAppointment TimeAppointment[]
+  finalAppointment FinalAppointment[]
 }
 
-model AppointmentFinal {
-  pickedService Int @unique
-  // serviceName Service @relation(fields: [pickedService], references: [id])
-  service Service @relation(fields: [pickedService], references: [id])
-  price Int
-  barber Barber @relation(fields: [pickedBarber], references: [name])
-  pickedBarber String @unique
-  date AppointmentDate? @relation(fields: [pickedDate], references: [date])
-  pickedDate DateTime @unique @db.Date
-  branch Branch @relation(fields: [pickedBranch], references: [name])
-  pickedBranch String @unique
-  //time
-  id AppointmentTime @relation(fields: [referenceCode], references: [id])
-  referenceCode Int @unique
+model TimeAppointment {
+  timeID Int @id @default(autoincrement())
+  dateFK DateAppointment @relation(fields: [FK_dateId], references: [dateID])
+  FK_dateId Int
+  time DateTime @db.Time()
+  isAvailable Boolean
+  finalAppointment FinalAppointment[]
 }
 
-model AccountSaved {
-  id Int @id @default(autoincrement())
-  type AccountType @default(CUSTOMER)
-  //di ko alam kung ano ba dapat tong mga nasa baba 
-  // provider
-  providerAccountId Int
-  refresh_token Int
-  access_token Int
-  expires_at DateTime
-  token_type String
-  // scope
-  id_token Int
-  // session_state
-}
-
-// model SessionSaved {
-//   id Int @id @default(autoincrement())
-//   sessionToken String
-//   userid String
-//   expires DateTime
-//   user User @relation(fields: [userId], references: [id])
-//   userId Int @unique
-// }
-
-// model Users {
-//   uid Int @id @default(autoincrement())
-//   name String
-//   email String
-//   emailVerified Boolean
-//   image Bytes
-//   preferredBarber Barber
-//   session SessionSaved
-//   branch Branch
-//   //role ano pinagkaiba ng role sa accounttype
-//   //password sketch pala to
-//   accounts AccountSaved
-//   //sessions
-// }
-
-
-model Schedule {
-  datesAvailable DateTime @unique
-}
-
-//enums serve as declared choices
-enum Category {
-  HAIRCUT
-  SHAVE
-}
-
-enum Duration {
-  THIRTYMINS
-  ONEHR //di nagaacept si prisma ng enum that starts with a number
-}
-
-enum AccountType {
-  ADMIN
-  CUSTOMER
+model FinalAppointment {
+  appointmentID Int @id @default(autoincrement())
+  branchFK Branch @relation(fields: [FK_branchId], references: [branchID])
+  FK_branchId Int
+  serviceFK Service @relation(fields: [FK_serviceId], references: [serviceID])
+  FK_serviceId Int
+  barberListFK BarberList @relation(fields: [FK_barberListId], references: [barberID])
+  FK_barberListId Int
+  dateFK DateAppointment @relation(fields: [FK_dateId], references: [dateID])
+  FK_dateId Int
+  timeFK TimeAppointment @relation(fields: [FK_timeId], references: [timeID])
+  FK_timeId Int
 }

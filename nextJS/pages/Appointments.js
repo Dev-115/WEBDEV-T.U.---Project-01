@@ -1,8 +1,9 @@
 import HeaderComponent from '../components/headercomponent'
 import NavComponent from '../components/navBar';
-import { Card, Image, Text, Badge, Button, Group, ActionIcon, Chip, Box } from '@mantine/core';
+import { Card, Text, Group, Chip, Box } from '@mantine/core';
 import Link from 'next/link';
 import React from 'react';
+import TestModals from '../components/testModal';
 
 export default function apppointmentsPage({ apppointments }) {
 
@@ -15,16 +16,9 @@ export default function apppointmentsPage({ apppointments }) {
     //   setIsRefreshing(false);
     // }, [theData]);
 
+    const data = [{ "name": "test1", "id": 1 }, { "name": "test2", "id": 2 }];
 
-    const removeButton = (
-        <ActionIcon size="xs" color="blue" radius="xl" variant="transparent" component={Link} href="https://mantine.dev/core/">
-            X
-        </ActionIcon>
-      );
-
-      const data =[{"name":"test1","id":1},{"name":"test2","id":2}];
-
-      const state = {
+    const state = {
         userData: [
             { id: '1', name: 'Joe', user_type: 'Developer' },
             { id: '2', name: 'Hill', user_type: 'Designer' }
@@ -34,63 +28,48 @@ export default function apppointmentsPage({ apppointments }) {
     console.log(apppointments)
 
 
-      let updatedValue = {
-        serviceCategory:'hair cut', serviceSelection:'shave n cutt',staffBarber:"samuel",dateAppointment:'Thu Sep 08 2022 00:00:00 GMT+0800 (China Standard Time)', dateDNT:"AM",timeAppoint:'6:00-7:00PM',
+    let updatedValue = {
+        serviceCategory: 'hair cut', serviceSelection: 'shave n cutt', staffBarber: "samuel", dateAppointment: 'Thu Sep 08 2022 00:00:00 GMT+0800 (China Standard Time)', dateDNT: "AM", timeAppoint: '6:00-7:00PM',
     }
     return (
         <>
-                <HeaderComponent>Appointments</HeaderComponent>
-                <NavComponent/>
-                <br/><br/>
-                <h1>Here’s your Appointment</h1>
+            <HeaderComponent>Appointments</HeaderComponent>
+            <NavComponent />
+            <br /><br />
+            <h1>Here’s your Appointment</h1>
 
-                {apppointments.map(function(item, index){
+            {apppointments.map(function (item, index) {
                 return (
-                <Box key={item.referenceCode}>
-                {/* <li key={idx}>{d.name}</li> */}
-                <Card shadow="sm" p="lg" radius="md" withBorder >
+                    <Box key={item.referenceCode}>
+                        {/* <li key={idx}>{d.name}</li> */}
+                        <Card shadow="sm" p="lg" radius="md" withBorder >
 
-                <Group position="apart" mt="md" mb="xs">
-                    {/* <Text weight={500}>Service Chip</Text> */}
-                    <Chip checked={true} variant="filled">{item.pickedService}</Chip>
-                    <h6>PRICE : AMMOUNT</h6>
-                    <Badge color="pink" variant="light"  rightSection={removeButton}>
-                    Cancel Appointment
-                    </Badge>
-                </Group>
+                            <Group position="apart" mt="md" mb="xs">
+                                {/* <Text weight={500}>Service Chip</Text> */}
+                                <Chip checked={true} variant="filled">{item.pickedService}</Chip>
+                                <h6>PRICE : {item.price}</h6>
+                            </Group>
 
-                <Text size="sm" color="dimmed">
-                Appointment for jeremy de guszman your Barber is {item.pickedBarber} at address of shop on {item.pickedTime} at {item.pickedDate}</Text>
+                            <Text size="sm" color="dimmed">
+                                Appointment for jeremy de guszman your Barber is {item.pickedBarber} at address of shop on {item.pickedTime} at {item.pickedDate}</Text>
 
-                {/* <Button component={Link} variant="light" color="blue" fullWidth mt="md" radius="md" href={{
-                    pathname: '/multiStepAppointment',
-                    query: { serviceCategory:'hair cut', serviceSelection:'shave n cutt',staffBarber:"samuel",dateAppointment:'Thu Sep 08 2022 00:00:00 GMT+0800 (China Standard Time)', dateDNT:"AM",timeAppoint:'6:00-7:00PM', },
-                    }}>
-                    Update Appointment
-                </Button> */}
+                            <TestModals>{item.referenceCode}</TestModals>
 
-                               <Button component={Link} variant="light" color="blue" fullWidth mt="md" radius="md" href={{
-                    pathname: '/multiStepAppointment',
-                    query: {referenceCode: item.referenceCode},
-                    }}>
-                    Change of Plans
-                </Button>
+                        </Card>
 
-                </Card>
-
-                 </Box>)
-                })}
+                    </Box>)
+            })}
 
         </>
     )
 }
 
-export async function getStaticProps(context) {
+export async function getServerSideProps(context) {
 
 
     var data = {
-        "referenceCode" : "",
-      };
+        "referenceCode": "",
+    };
     const JSONdata = JSON.stringify(data);
 
 
@@ -108,4 +87,4 @@ export async function getStaticProps(context) {
             apppointments,
         },
     }
-  }
+}
