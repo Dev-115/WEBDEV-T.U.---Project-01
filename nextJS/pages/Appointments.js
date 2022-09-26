@@ -1,11 +1,11 @@
 import HeaderComponent from '../components/headercomponent'
 import NavComponent from '../components/navBar';
-import { Card, Text, Group, Chip, Box } from '@mantine/core';
+import { Card, Text, Group, Chip, Box, Aside } from '@mantine/core';
 import Link from 'next/link';
 import React from 'react';
 import TestModals from '../components/testModal';
 
-export default function apppointmentsPage({ apppointments }) {
+export default function apppointmentsPage({ apppointments, pastAppointment }) {
 
     // const [isRefreshing, setIsRefreshing] = React.useState(false);
     // const refreshData = () => {
@@ -15,6 +15,9 @@ export default function apppointmentsPage({ apppointments }) {
     // React.useEffect(() => {
     //   setIsRefreshing(false);
     // }, [theData]);
+    // if (typeof apppointments != "undefined") {
+    console.log(pastAppointment);
+    // }
 
     const data = [{ "name": "test1", "id": 1 }, { "name": "test2", "id": 2 }];
 
@@ -25,20 +28,17 @@ export default function apppointmentsPage({ apppointments }) {
         ]
     };
 
-    console.log(apppointments)
 
 
     let updatedValue = {
         serviceCategory: 'hair cut', serviceSelection: 'shave n cutt', staffBarber: "samuel", dateAppointment: 'Thu Sep 08 2022 00:00:00 GMT+0800 (China Standard Time)', dateDNT: "AM", timeAppoint: '6:00-7:00PM',
     }
-    return (
-        <>
-            <HeaderComponent>Appointments</HeaderComponent>
-            <NavComponent />
-            <br /><br />
-            <h1>Here’s your Appointment</h1>
 
-            {apppointments.map(function (item, index) {
+
+    const DisplayAppointment = (appointmentProps) => {
+        console.log(appointmentProps.appointmentProps);
+        if (appointmentProps.appointmentProps.message != '123') {
+            return (appointmentProps.appointmentProps.map(function (item, index) {
                 return (
                     <Box key={item.referenceCode}>
                         {/* <li key={idx}>{d.name}</li> */}
@@ -58,7 +58,29 @@ export default function apppointmentsPage({ apppointments }) {
                         </Card>
 
                     </Box>)
-            })}
+            }))
+
+        } else {
+            return ('no appointments')
+        }
+
+    }
+
+
+    return (
+        <>
+            <HeaderComponent>Appointments</HeaderComponent>
+            <NavComponent />
+            <br /><br />
+            <h1>Here’s your Appointment</h1>
+            <DisplayAppointment appointmentProps={apppointments} />
+            <div>old appointment
+                <DisplayAppointment appointmentProps={pastAppointment} />
+            </div>
+
+            <div>future appointment
+                <DisplayAppointment appointmentProps={pastAppointment} />
+            </div>
 
         </>
     )
@@ -79,12 +101,20 @@ export async function getServerSideProps(context) {
         headers: { "Content-Type": "application/json" }
     })
 
+    const res2 = await fetch("http://localhost:3000/api/dbcall/oldAppointmentCall", {
+        method: 'POST',
+        body: JSONdata,
+        headers: { "Content-Type": "application/json" }
+    })
+
 
 
     const apppointments = await res.json()
+    const pastAppointment = await res2.json()
+
     return {
         props: {
-            apppointments,
+            apppointments, pastAppointment,
         },
     }
 }
