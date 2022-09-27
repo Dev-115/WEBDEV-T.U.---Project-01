@@ -1,0 +1,86 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    width: 100vw;
+    height: 100vh;
+    background: url(../Web/bgjett.jpg);
+    background-size: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    object-fit: cover;
+    overflow-x: hidden;
+}
+
+h1,
+h2,
+h3 {
+    font-family: 'Libre Baskervile', serif, sans-serif;
+}
+
+p,
+a,
+li,
+button,
+input {
+    font-family: 'Inter', serif, sans-serif;
+}
+
+h1 {
+    font-size: 41px;
+}
+
+p {
+    font-size: 20px;
+}
+
+ul {
+    font-size: 18px;
+}
+
+h1 {
+    border-bottom: 3px solid #119171;
+    width: 45%;
+}
+
+.section_profile {
+    width: 50vw;
+    height: 55vh;
+    border-radius: 25px;
+    background-color: #f0f4f3;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 50px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    box-shadow: 2px 2px 5px 5px rgba(102, 102, 102, 0.144);
+}
+
+.flex_box {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-content: center;
+}
+
+.flex_box:last-child {
+    width: 500px;
+    gap: 20px;
+}
+
+img {
+    border-radius: 50%;
+    background-position: center;
+    object-fit: cover;
+}
+
+ul {
+    list-style: none;
+}

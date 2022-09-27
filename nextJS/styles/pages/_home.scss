@@ -94,7 +94,7 @@
         .flex_box_nested {
             // Container for Services
             @include flex_prop2();
-            width: 85vw;
+            width: inherit;
             overflow: hidden;
 
             &>.flex_item:nth-child(2){

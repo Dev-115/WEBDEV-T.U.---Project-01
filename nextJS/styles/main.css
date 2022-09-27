@@ -608,7 +608,7 @@ a:active {
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
-  width: 85vw;
+  width: inherit;
   overflow: hidden;
 }
 .section_services .flex_box .flex_box_nested > .flex_item:nth-child(2) {
