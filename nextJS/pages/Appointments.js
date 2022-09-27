@@ -67,15 +67,45 @@ export default function apppointmentsPage({ apppointments, pastAppointment }) {
     }
 
 
+    const DisplayOldAppointment = (appointmentProps) => {
+        console.log(appointmentProps.appointmentProps);
+        if (appointmentProps.appointmentProps.message != '123') {
+            return (appointmentProps.appointmentProps.map(function (item, index) {
+                return (
+                    <Box key={item.referenceCode}>
+                        {/* <li key={idx}>{d.name}</li> */}
+                        <Card shadow="sm" p="lg" radius="md" withBorder >
+
+                            <Group position="apart" mt="md" mb="xs">
+                                {/* <Text weight={500}>Service Chip</Text> */}
+                                <Chip checked={true} variant="filled">{item.pickedService}</Chip>
+                                <h6>PRICE : {item.price}</h6>
+                            </Group>
+
+                            <Text size="sm" color="dimmed">
+                                Appointment for jeremy de guszman your Barber is {item.pickedBarber} at address of shop on {item.pickedTime} at {item.pickedDate}</Text>
+
+                        </Card>
+
+                    </Box>)
+            }))
+
+        } else {
+            return ('no appointments')
+        }
+
+    }
+
+
     return (
         <>
             <HeaderComponent>Appointments</HeaderComponent>
             <NavComponent />
             <br /><br />
-            <h1>Here’s your Appointment</h1>
+            <h1>Here’s your Appointment</h1>soon appointments
             <DisplayAppointment appointmentProps={apppointments} />
             <div>old appointment
-                <DisplayAppointment appointmentProps={pastAppointment} />
+                <DisplayOldAppointment appointmentProps={pastAppointment} />
             </div>
 
             <div>future appointment
