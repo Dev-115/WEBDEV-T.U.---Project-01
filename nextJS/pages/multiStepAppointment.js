@@ -12,7 +12,7 @@ import NavComponent from "../components/navBar";
 import { Button, Box, Stepper } from "@mantine/core"
 let renderCount = 0;
 
-export default function multiStepPage() {
+export default function multiStepPage({ serviceChips }) {
 
     renderCount += 1;
     console.log(`${multiStepPage.name}. renderCount: `, renderCount);
@@ -209,7 +209,7 @@ export default function multiStepPage() {
     const conditionalComponent = () => {
         switch (page) {
             case 0:
-                return <AppointmentStep1 updateRefCode={updateReference} childToParent1={childToParent1} />;
+                return <AppointmentStep1 updateRefCode={updateReference} childToParent1={childToParent1} chipProp={serviceChips} />;
             case 1:
                 return <AppointmentStep2 updateRefCode={updateReference} childToParent2={childToParent2} />;
             case 2:
@@ -257,12 +257,30 @@ export default function multiStepPage() {
 };
 
 
-{/* <Stepper active={page} onStepClick={setPage} breakpoint="sm">
-<Stepper.Step label="Service" description="Select an service"></Stepper.Step>
-<Stepper.Step label="Barber" description="Select a prefered stylist?"></Stepper.Step>
-<Stepper.Step label="Date" description="Select a date"></Stepper.Step>
-<Stepper.Step label="Time" description="Select a Time"></Stepper.Step>
-<Stepper.Step label="One Last Look" description="Check Details"></Stepper.Step>
-<Stepper.Completed>
-</Stepper.Completed>
-</Stepper> */}
+export async function getServerSideProps(context) {
+    let credData = [];
+    credData['refcon'] = "%%";
+
+    const valuesParams = [credData.refcon];
+    const valuesSqlSoon = "  SELECT * FROM `appointmentfinal` WHERE appointmentfinal.pickedDate > DATE(NOW()) ORDER BY pickedDate ASC LIMIT 1";
+
+    var datasoon = {
+        "referenceCode": "",
+        "sql": valuesSqlSoon,
+        "valuesParams": valuesParams,
+    };
+    const JSONdatasoon = JSON.stringify(datasoon);
+
+    const res = await fetch("http://localhost:3000/api/dbcall/appointmentCall", {
+        method: 'POST',
+        body: JSONdatasoon,
+        headers: { "Content-Type": "application/json" }
+    })
+    const serviceChips = await res.json();
+
+    return {
+        props: {
+            serviceChips,
+        },
+    }
+}

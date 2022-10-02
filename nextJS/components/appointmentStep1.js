@@ -2,7 +2,7 @@ import { Box, Stepper, Group, Button, Text, Chip, createStyles } from '@mantine/
 import React from "react";
 
 
-export default function appointmentStep1({ updateRefCode, childToParent1 }) {
+export default function appointmentStep1({ updateRefCode, childToParent1, chipProp }) {
   const [chip1State, setChip1State] = React.useState("");
 
   // const [active, setActive] = React.useState(1);
@@ -24,6 +24,8 @@ export default function appointmentStep1({ updateRefCode, childToParent1 }) {
     // console.log(step1a, '<<setp1');
   }
 
+  console.log(chipProp, 'undefind');
+
 
   const chip1val = [{ "chip1": "Cutting / Styling" }, { "chip1": "Shave" }, { "chip1": "Color" }, { "chip1": "Treatments" }];
 
@@ -32,16 +34,6 @@ export default function appointmentStep1({ updateRefCode, childToParent1 }) {
   //chip1State
   if (chip1State != "") {
     chip2val = [{ "chip2": chip1State.concat("Hair Cut") }, { "chip2": chip1State.concat("Hair Cut + Rinse") }, { "chip2": chip1State.concat("Hair Cut + Foot Massage WTF?") }]
-  }
-
-  const dynamiChip = () => {
-
-    //  return (<>
-    //  </>);
-    chip2val.map(function (item, index) {
-      return (<Chip key={item.chip2} size="xl" classNames={classes} value={item.chip2}>{item.chip2}</Chip>)
-    });
-
   }
 
   const chip2 = (e) => {
@@ -74,10 +66,14 @@ export default function appointmentStep1({ updateRefCode, childToParent1 }) {
             return (<Chip key={item.chip2} classNames="flex_nested_subitem" value={item.chip2}>{item.chip2}</Chip>)
           }
           )}
-          {/* <dynamiChip/> */}
         </Chip.Group>
+
+        {chipProp.map(function (item, index) {
+          return (<div key={item.pickedService}>{item.pickedService}</div>)
+        }
+        )}
       </div>
     </div>
   );
 }
-//   export default appointmentStep1;
+

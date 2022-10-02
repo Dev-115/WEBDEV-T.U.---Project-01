@@ -32,7 +32,8 @@ export default function NavComponent() {
             <Link href="/">Home</Link>
             <Link href="/services">Services</Link>
             <Link href="/About">About Us</Link>
-            {/*  */}
+            {status === "unauthenticated" ? null : <><Link href="/Staff/manageBarber">ManageBarber</Link>
+            </>}
             {/* <LoginBtn>hello</LoginBtn>
             <Link href="/register2"><button class="btn_primary">Register</button></Link> */}
             {status === "unauthenticated" ? <><Link href="/link1">Link 1</Link>
